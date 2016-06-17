@@ -1,0 +1,8 @@
+js.config.properties.rootObject.workspaces: |
+  [{
+    "endpoint": "http://docker.local:8080/dataplatform",
+    "endpointId": "default",
+    "endpointName": "Default endpoint",
+    "defaultGraph": ""
+  }]
+js.config.properties.rootObject.hideEndpointInput: false
