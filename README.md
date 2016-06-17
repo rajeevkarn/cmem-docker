@@ -9,7 +9,9 @@ to run eLDS and Virtuoso with docker on your local machine do:
 3. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `92.168.99.100    docker.local`)
 4. run `docker-compose up`
 5. open [http://docker.local:8080](http://docker.local:8080) in your browser
-
+6. login: two sample users are configured `userA` and `userB` (password same as user name), where
+    - `userA` can read all graphs
+    - `userB` can read/write all graphs
 
 ## URIs
 
