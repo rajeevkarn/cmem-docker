@@ -4,10 +4,11 @@
 
 to run eLDS and Virtuoso with docker on your local machine do:
 
-1. login to [artifactory.eccenca.com](https://artifactory.eccenca.com) and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
-2. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `92.168.99.100    docker.local`)
-3. run `docker-compose up`
-4. open [http://docker.local:8080](http://docker.local:8080) in your browser
+1. run `git clone https://github.com/eccenca/elds-docker.git && cd elds-docker`
+2. login to [artifactory.eccenca.com](https://artifactory.eccenca.com) and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
+3. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `92.168.99.100    docker.local`)
+4. run `docker-compose up`
+5. open [http://docker.local:8080](http://docker.local:8080) in your browser
 
 
 ## URIs
