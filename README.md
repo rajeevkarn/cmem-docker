@@ -2,7 +2,7 @@
 
 ## usage instructions
 
-to run eLDS and Virtuoso with docker on your local machine do:
+to run eLDS and Stardog with docker on your local machine do:
 
 1. run `git clone https://github.com/eccenca/elds-docker.git && cd elds-docker`
 2. login to [artifactory.eccenca.com](https://artifactory.eccenca.com) and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
@@ -12,6 +12,7 @@ to run eLDS and Virtuoso with docker on your local machine do:
 6. login: two sample users are configured `userA` and `userB` (password same as user name), where
     - `userA` can read all graphs
     - `userB` can read/write all graphs
+
 
 ## URIs
 
@@ -25,6 +26,7 @@ to run eLDS and Virtuoso with docker on your local machine do:
 - `Dockerfile` docker file to build the elds image
 - `docker-compose.yml` docker container composition of elds and virtuoso image
 - `aksworg.trig` some sample data 
+- `aksworg.ttl` some sample data 
 - `README.md` this file
 - `artifacts/` folder that should hold the downloaded eLDS artifacts
 - `etc/` individual run-time configuration for the eLDS components

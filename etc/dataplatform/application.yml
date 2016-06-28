@@ -60,15 +60,16 @@ http:
 ### SPARQL endpoints
 ################################################################################
 sparqlEndpoints:
-  virtuoso:
-    - id : "default"
-      authorization : REWRITE_FROM
-      host : "virtuoso"
-      port : "1111"
-      username : "dba"
-      password : "dba"
-      versioning:
-        enabled: false
+  owlImportsResolution: true
+  stardog:
+  - id: "default"
+    authorization: REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
+    host: "stardog"
+    port: "5820"
+    username: "admin"
+    password: "admin"
+    database: "stardog"
+    versioningEnabled: true # optional, default false cached: <boolean> # optional, default false
 
 
 ################################################################################

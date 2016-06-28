@@ -3,13 +3,17 @@ services:
   elds:
     build: .
     hostname: docker.local
+    environment:
+      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m"
     volumes:
       - ./etc:/opt/elds/etc
     ports:
       - "8080:8080"
     depends_on:
-      - virtuoso
+      - stardog
     links:
-      - virtuoso
-  virtuoso:
-    image: eccenca/virtuoso7:7.2.0.1-3
+      - stardog
+  stardog:
+    image: docker-registry.eccenca.com/complexible-stardog:v4.1.1-1
+    ports:
+      - "5820:5820"
