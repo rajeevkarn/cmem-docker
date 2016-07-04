@@ -24,7 +24,7 @@ to run eLDS and Virtuoso with docker on your local machine do:
 
 - `Dockerfile` docker file to build the elds image
 - `docker-compose.yml` docker container composition of elds and virtuoso image
-- `aksworg.trig` some sample data 
+- `aksworg.trig` some sample data
 - `README.md` this file
 - `artifacts/` folder that should hold the downloaded eLDS artifacts
 - `etc/` individual run-time configuration for the eLDS components
