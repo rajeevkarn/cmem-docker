@@ -28,3 +28,10 @@ to run eLDS and Virtuoso with docker on your local machine do:
 - `README.md` this file
 - `artifacts/` folder that should hold the downloaded eLDS artifacts
 - `etc/` individual run-time configuration for the eLDS components
+
+## Datastore
+
+at the moment this orchestration will support the following datastores:
+
+* virtuoso (develop branch)
+* stardog (stardog branch)
