@@ -14,9 +14,10 @@ to run eLDS and Stardog with docker on your local machine do:
 2. login to [artifactory.eccenca.com](https://artifactory.eccenca.com) and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
 3. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `192.168.99.100    docker.local`)
 4. run `docker-compose build`
-5. run `docker-compose up`
-6. open [http://docker.local:8080](http://docker.local:8080) in your browser
-7. login: two sample users are configured `userA` and `userB` (password same as user name), where
+5. run `docker volume create --name=stardog-data`
+6. run `docker-compose up`
+7. open [http://docker.local:8080](http://docker.local:8080) in your browser
+8. login: two sample users are configured `userA` and `userB` (password same as user name), where
     - `userA` can read all graphs
     - `userB` can read/write all graphs
 
