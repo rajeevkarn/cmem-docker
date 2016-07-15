@@ -15,6 +15,7 @@ authOntology:
   accessConditions:
     url: "/opt/elds/etc/dataplatform/accessConditions.ttl"
 
+
 ################################################################################
 ### OAuth 2
 ################################################################################
@@ -27,6 +28,8 @@ oauth2:
       redirectUris:
         - "http://docker.local:8080/login"
         - "http://docker.local:8080/dataintegration/login"
+        - "http://localhost:8080/login"
+        - "http://localhost:8080/dataintegration/login"
 
 
 ################################################################################
