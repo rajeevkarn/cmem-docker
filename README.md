@@ -2,7 +2,7 @@
 
 ## Requirements / stardog docker image
 
-This composition assumes the docker image `stardog:4.1.1` is available locally.
+This composition assumes the docker image `stardog:4.1.2` is available locally.
 See [https://github.com/rpietzsch/stardog-docker](https://github.com/rpietzsch/stardog-docker) for instructions and `Dockerfile` to create such image. Only clone and build the docker image using the `stardog-docker` repository. The resulting image will be used (run) in _this_ docker composition.
 
 

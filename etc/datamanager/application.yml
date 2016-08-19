@@ -6,3 +6,7 @@ js.config.properties.rootObject.workspaces: |
     "defaultGraph": ""
   }]
 js.config.properties.rootObject.hideEndpointInput: false
+###########
+# Logging #
+###########
+logging.file: "/opt/elds/etc/datamanager.log"
