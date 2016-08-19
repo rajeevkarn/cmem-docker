@@ -1,2 +1,4 @@
 artifacts/*.zip
 dist/data*
+datamanager.log
+dataplatform.log
