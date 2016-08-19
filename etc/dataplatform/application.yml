@@ -25,6 +25,7 @@ oauth2:
     - id: "eldsClient"
       secret: "secret"
       grantTypes:
+        - "implicit"
         - "authorization_code"
       redirectUris:
         - "http://docker.local:8080/login"
@@ -87,7 +88,6 @@ proxy:
 ### Logging
 ################################################################################
 logging:
-  file: "${ELDS_HOME}/var/log/dataplatform.log"
   file: "/opt/elds/etc/dataplatform.log"
   level:
     root: WARN
