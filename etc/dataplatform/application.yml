@@ -24,6 +24,8 @@ oauth2:
       secret: "secret"
       grantTypes:
         - "authorization_code"
+        - "implicit"
+        - "password"
       redirectUris:
         - "http://docker.local:8080/login"
         - "http://docker.local:8080/dataintegration/login"
