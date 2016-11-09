@@ -1,6 +1,7 @@
 FROM tomcat:8.5
 
 ENV ELDS_HOME /opt/elds
+ENV CATALINA_OPTS "-Xmx2g -XX:MaxPermSize=512m"
 RUN mkdir -p ${ELDS_HOME}/dist
 COPY artifacts/*.zip /tmp/
 RUN \
