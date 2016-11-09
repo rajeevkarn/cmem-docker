@@ -9,7 +9,7 @@
 ################################################################################
 ### eLDS Auth ontology
 ################################################################################
-authOntology:
+authorization:
   abox:
     prefix: "http://eccenca.com/"
   accessConditions:
@@ -19,16 +19,18 @@ authOntology:
 ### OAuth 2
 ################################################################################
 oauth2:
+  anonymous: true
   clients:
     - id: "eldsClient"
       secret: "secret"
       grantTypes:
-        - "authorization_code"
         - "implicit"
-        - "password"
+        - "authorization_code"
       redirectUris:
         - "http://docker.local:8080/login"
         - "http://docker.local:8080/dataintegration/login"
+        - "http://localhost:8080/login"
+        - "http://localhost:8080/dataintegration/login"
 
 
 ################################################################################
@@ -62,6 +64,7 @@ http:
 ### SPARQL endpoints
 ################################################################################
 sparqlEndpoints:
+  owlImportsResolution: true
   virtuoso:
     - id : "default"
       authorization : REWRITE_FROM
@@ -84,7 +87,7 @@ proxy:
 ### Logging
 ################################################################################
 logging:
-  file: "${ELDS_HOME}/var/log/dataplatform.log"
+  file: "/opt/elds/etc/dataplatform.log"
   level:
     root: WARN
     com.eccenca: INFO
