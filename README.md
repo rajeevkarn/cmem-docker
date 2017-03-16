@@ -1,14 +1,14 @@
-# eLDS Docker Composition
+# CMEM Docker orchestration
 
-## Requirements / stardog docker image
+## Requirements 
 
-This composition assumes the docker image `stardog:4.1.2` is available locally.
+This orchestration assumes the docker image `stardog:4.2.3` is available locally.
 See <https://github.com/rpietzsch/stardog-docker> for instructions and `Dockerfile` to create such image. Only clone and build the docker image using the `stardog-docker` repository. The resulting image will be used (run) in _this_ docker composition.
 
 
-## usage instructions
+## Usage instructions
 
-to run eLDS and Stardog with docker on your local machine do:
+To run eLDS and Stardog with docker on your local machine do:
 
 1. run `git clone https://github.com/eccenca/elds-docker.git && cd elds-docker && git checkout stardog`
 2. login to <https://artifactory.eccenca.com> and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
