@@ -9,20 +9,41 @@ js.config.properties.rootObject.workspaces: |
         "grantType": "implicit",
         "authorizeEndpoint": "http://docker.local:8080/dataplatform/oauth/authorize",
         "clientId": "eldsClient"
+    },
+    "appPresentation": {
+        "name": "eccenca Corporate Memory",
+        "title": "eccenca Corporate Memory"
     }
   }]
 js.config.properties.rootObject.hideEndpointInput: false
+
+js.config.properties.rootObject.appPresentation: |
+  {
+    "name": "eccenca Corporate Memory",
+    "title": "eccenca Corporate Memory"
+  }
+
 js.config.properties.rootObject.rdfdoc: |
   {
     "fallbackOntology": true,
     "fallbackSchema": false
   }
-#js.config.properties.rootObject.dataintegration: |
-#  {
-#    "graph": "https://ns.eccenca.com/example/data/dataset/",
-#    "urlRestApi": "//docker.local:8080/dataintegration",
-#    "dummyDefaultProjectId": "AXA"
-#  }
+  
+js.config.properties.rootObject.dataintegration: |
+  {
+    "urlRestApi": "${DEPLOY_PROTOCOL}://${DEPLOY_HOST}/dataintegration/",
+    "dummyDefaultProjectId": "cmem"
+  }
+
+js.config.properties.rootObject.datasetManagement: |
+  {
+    "graph": "https://ns.eccenca.com/example/data/dataset/"
+  }
+
+js.config.properties.rootObject.vocabularyManagement: |
+  {
+    "graph": "https://ns.eccenca.com/example/data/vocabs/"
+  }
 
 ###########
 # Logging #

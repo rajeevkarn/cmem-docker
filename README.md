@@ -11,8 +11,8 @@ See <https://github.com/rpietzsch/stardog-docker> for instructions and `Dockerfi
 To run eLDS and Stardog with docker on your local machine do:
 
 1. run `git clone https://github.com/eccenca/elds-docker.git && cd elds-docker && git checkout stardog`
-2. login to <https://artifactory.eccenca.com> and download artifact zip files into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
-3. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `192.168.99.100    docker.local`)
+2. login to <https://artifactory.eccenca.com> and download CMEM zip file into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details
+3. add in your `/etc/hosts` host name alias `docker.local` pointing to the IP address of your docker service (e.g. by adding a line like `192.168.99.100 docker.local`)
 4. run `docker-compose build`
 5. run `docker volume create --name=stardog-data`
 6. run `docker-compose up`

@@ -1,6 +1,6 @@
 version: '2'
 services:
-  elds:
+  cmem:
     build: .
     hostname: docker.local
     environment:
@@ -14,7 +14,8 @@ services:
     links:
       - stardog
   stardog:
-    image: stardog:4.1.2
+    image: stardog:4.2.3
+    # image: docker-registry.eccenca.com/complexible-stardog:v4.2.3-1
     volumes:
       - stardog-data:/data
     ports:

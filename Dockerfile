@@ -5,6 +5,8 @@ ENV CATALINA_OPTS "-Xmx2g -XX:MaxPermSize=512m"
 RUN mkdir -p ${ELDS_HOME}/dist
 COPY artifacts/*.zip /tmp/
 RUN \
+    unzip -j -d /tmp /tmp/eccenca-Corporate-Memory* && \
+    rm /tmp/*.pdf && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataIntegration* && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataManager* && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataPlatform* && \
@@ -24,5 +26,4 @@ RUN \
   && ln -sf ${ELDS_HOME}/dist/dataplatform/etc/dataplatform.xml.dist ${CATALINA_HOME}/conf/Catalina/localhost/dataplatform.xml \
   && ln -sf ${ELDS_HOME}/dist/datamanager/lib/eccenca-DataManager.war ${CATALINA_HOME}/webapps/ROOT.war \
   && ln -sf ${ELDS_HOME}/dist/datamanager/etc/datamanager.xml.dist ${CATALINA_HOME}/conf/Catalina/localhost/ROOT.xml \
-  && ln -sf ${ELDS_HOME}/dist/dataintegration/lib/eccenca-DataIntegration.war ${CATALINA_HOME}/webapps/dataintegration.war \
-  && ln -sf ${ELDS_HOME}/dist/dataintegration/etc/dataintegration.xml.dist ${CATALINA_HOME}/conf/Catalina/localhost/dataintegration.xml
+  && ln -sf ${ELDS_HOME}/dist/dataintegration/lib/eccenca-DataIntegration.war ${CATALINA_HOME}/webapps/dataintegration.war 

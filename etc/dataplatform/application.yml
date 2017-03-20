@@ -9,7 +9,7 @@
 ################################################################################
 ### eLDS Auth ontology
 ################################################################################
-authOntology:
+authorization:
   abox:
     prefix: "http://eccenca.com/"
   accessConditions:
@@ -27,13 +27,7 @@ oauth2:
       grantTypes:
         - "implicit"
         - "authorization_code"
-      redirectUris:
-        - "http://docker.local:8080/login"
-        - "http://docker.local:8080/dataintegration/login"
-        - "http://localhost:8080/login"
-        - "http://localhost:8080/dataintegration/login"
-
-
+      
 ################################################################################
 ### Authentication
 ################################################################################
@@ -74,8 +68,8 @@ sparqlEndpoints:
     username: "admin"
     password: "admin"
     database: "stardog"
-    versioningEnabled: true # optional, default false cached: <boolean> # optional, default false
-
+    versioning:
+      enabled: true
 
 ################################################################################
 ### Proxy
@@ -91,5 +85,5 @@ logging:
   file: "/opt/elds/etc/dataplatform.log"
   level:
     root: WARN
-    com.eccenca: INFO
+    com.eccenca.elds.backend: INFO
     org.springframework: WARN
