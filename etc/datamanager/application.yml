@@ -31,7 +31,7 @@ js.config.properties.rootObject.rdfdoc: |
   
 js.config.properties.rootObject.dataintegration: |
   {
-    "urlRestApi": "${DEPLOY_PROTOCOL}://${DEPLOY_HOST}/dataintegration/",
+    "urlRestApi": "http://docker.local:8080/dataintegration/",
     "dummyDefaultProjectId": "cmem"
   }
 

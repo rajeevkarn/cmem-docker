@@ -27,6 +27,7 @@ oauth2:
       grantTypes:
         - "implicit"
         - "authorization_code"
+        - "password"
       
 ################################################################################
 ### Authentication
