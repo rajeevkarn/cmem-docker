@@ -8,7 +8,7 @@ See <https://github.com/rpietzsch/stardog-docker> for instructions and `Dockerfi
 
 ## Usage instructions
 
-To run eLDS and Stardog with docker on your local machine do:
+To run CMEM and Stardog with docker on your local machine do:
 
 1. run `git clone https://github.com/eccenca/elds-docker.git && cd elds-docker && git checkout stardog`
 2. login to <https://artifactory.eccenca.com> and download CMEM zip file into the `artifacts` folder - see [artifacts/README.md](artifacts/README.md) for details

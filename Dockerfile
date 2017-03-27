@@ -5,8 +5,6 @@ ENV CATALINA_OPTS "-Xmx2g -XX:MaxPermSize=512m"
 RUN mkdir -p ${ELDS_HOME}/dist
 COPY artifacts/*.zip /tmp/
 RUN \
-    unzip -j -d /tmp /tmp/eccenca-Corporate-Memory* && \
-    rm /tmp/*.pdf && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataIntegration* && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataManager* && \
     unzip -d ${ELDS_HOME}/dist/ /tmp/eccenca-DataPlatform* && \
