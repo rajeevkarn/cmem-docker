@@ -28,7 +28,7 @@ oauth2:
         - "implicit"
         - "authorization_code"
         - "password"
-      
+
 ################################################################################
 ### Authentication
 ################################################################################
@@ -71,19 +71,22 @@ logging:
     root: WARN
     com.eccenca.elds.backend: INFO
     org.springframework: WARN
----
-
-###
-# Configuration for stardog
-###
-spring:
-    profiles: stardog
 
 ################################################################################
 ### SPARQL endpoints
 ################################################################################
 sparqlEndpoints:
   owlImportsResolution: true
+
+---
+
+###
+# Configuration for stardog sparql endpoint
+###
+spring:
+  profiles: stardog
+
+sparqlEndpoints:
   stardog:
   - id: "default"
     authorization: REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
