@@ -12,10 +12,6 @@ js.config.properties.rootObject.workspaces: |
         "grantType": "implicit",
         "authorizeEndpoint": "http://docker.local:8080/dataplatform/oauth/authorize",
         "clientId": "eldsClient"
-    },
-    "appPresentation": {
-        "name": "eccenca Corporate Memory",
-        "title": "eccenca Corporate Memory"
     }
   }]
 js.config.properties.rootObject.hideEndpointInput: false
@@ -31,7 +27,7 @@ js.config.properties.rootObject.rdfdoc: |
     "fallbackOntology": true,
     "fallbackSchema": false
   }
-  
+
 js.config.properties.rootObject.dataintegration: |
   {
     "urlRestApi": "http://docker.local:8080/dataintegration/",

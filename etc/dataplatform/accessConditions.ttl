@@ -9,17 +9,17 @@
 :ReadAllGraphsGroupUser a eccauth:AccessCondition ;
     eccauth:readGraph <urn:elds-backend-all-graphs>;
     eccauth:requiresGroup :group_user ;
-    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di>  ;
+    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di> ;
 .
 
 :WriteAllGraphsGroupUserB  a eccauth:AccessCondition ;
     eccauth:writeGraph <urn:elds-backend-all-graphs>;
     eccauth:requiresGroup :group_user_b ;
-    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di>  ;
+    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di> ;
 .
 
 :AnonymousReadAccess a eccauth:AccessCondition ;
     eccauth:requiresGroup <urn:elds-backend-public-group> ;
     eccauth:readGraph <urn:elds-backend-all-graphs> ;
-    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di>  ;
+    eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di> ;
 .
