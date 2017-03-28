@@ -55,23 +55,6 @@ http:
     enabled: true # default false
     allowOriginRegex: ".*"
 
-
-################################################################################
-### SPARQL endpoints
-################################################################################
-sparqlEndpoints:
-  owlImportsResolution: true
-  stardog:
-  - id: "default"
-    authorization: REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
-    host: "stardog"
-    port: "5820"
-    username: "admin"
-    password: "admin"
-    database: "stardog"
-    versioning:
-      enabled: true
-
 ################################################################################
 ### Proxy
 ################################################################################
@@ -88,3 +71,26 @@ logging:
     root: WARN
     com.eccenca.elds.backend: INFO
     org.springframework: WARN
+---
+
+###
+# Configuration for stardog
+###
+spring:
+    profiles: stardog
+
+################################################################################
+### SPARQL endpoints
+################################################################################
+sparqlEndpoints:
+  owlImportsResolution: true
+  stardog:
+  - id: "default"
+    authorization: REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
+    host: "stardog"
+    port: "5820"
+    username: "admin"
+    password: "admin"
+    database: "stardog"
+    versioning:
+      enabled: true
