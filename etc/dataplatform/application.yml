@@ -15,6 +15,7 @@ authorization:
   accessConditions:
     url: "/opt/elds/etc/dataplatform/accessConditions.ttl"
 
+
 ################################################################################
 ### OAuth 2
 ################################################################################
@@ -26,12 +27,7 @@ oauth2:
       grantTypes:
         - "implicit"
         - "authorization_code"
-      redirectUris:
-        - "http://docker.local:8080/login"
-        - "http://docker.local:8080/dataintegration/login"
-        - "http://localhost:8080/login"
-        - "http://localhost:8080/dataintegration/login"
-
+        - "password"
 
 ################################################################################
 ### Authentication
@@ -59,23 +55,6 @@ http:
     enabled: true # default false
     allowOriginRegex: ".*"
 
-
-################################################################################
-### SPARQL endpoints
-################################################################################
-sparqlEndpoints:
-  owlImportsResolution: true
-  virtuoso:
-    - id : "default"
-      authorization : REWRITE_FROM
-      host : "virtuoso"
-      port : "1111"
-      username : "dba"
-      password : "dba"
-      versioning:
-        enabled: false
-
-
 ################################################################################
 ### Proxy
 ################################################################################
@@ -90,5 +69,50 @@ logging:
   file: "/opt/elds/etc/dataplatform.log"
   level:
     root: WARN
-    com.eccenca: INFO
+    com.eccenca.elds.backend: INFO
     org.springframework: WARN
+
+################################################################################
+### SPARQL endpoints
+################################################################################
+sparqlEndpoints:
+  owlImportsResolution: true
+
+---
+
+###
+# Configuration for stardog sparql endpoint
+###
+spring:
+  profiles: stardog
+
+sparqlEndpoints:
+  stardog:
+  - id: "default"
+    authorization: REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
+    host: "stardog"
+    port: "5820"
+    username: "admin"
+    password: "admin"
+    database: "stardog"
+    versioning:
+      enabled: true
+
+---
+
+###
+# Configuration for virtuoso sparql endpoint
+###
+spring:
+  profiles: virtuoso
+
+sparqlEndpoints:
+  virtuoso:
+    - id : "default"
+      authorization : REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
+      host : "virtuoso"
+      port : "1111"
+      username : "dba"
+      password : "dba"
+      versioning:
+        enabled: false

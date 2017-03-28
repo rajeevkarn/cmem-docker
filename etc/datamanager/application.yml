@@ -5,6 +5,9 @@ js.config.properties.rootObject.workspaces: |
     "endpointName": "Default endpoint",
     "defaultGraph": "",
     "authorizationType": "oauth2",
+    "resourceEndpoints": [
+        "http://docker.local:8080/dataintegration/"
+    ],
     "oauth2": {
         "grantType": "implicit",
         "authorizeEndpoint": "http://docker.local:8080/dataplatform/oauth/authorize",
@@ -12,23 +15,34 @@ js.config.properties.rootObject.workspaces: |
     }
   }]
 js.config.properties.rootObject.hideEndpointInput: false
+
+js.config.properties.rootObject.appPresentation: |
+  {
+    "name": "eccenca Corporate Memory",
+    "title": "eccenca Corporate Memory"
+  }
+
 js.config.properties.rootObject.rdfdoc: |
   {
     "fallbackOntology": true,
     "fallbackSchema": false
   }
-#js.config.properties.rootObject.dataintegration: |
-#  {
-#    "graph": "https://ns.eccenca.com/example/data/dataset/",
-#    "urlRestApi": "//docker.local:8080/dataintegration",
-#    "dummyDefaultProjectId": "AXA"
-#  }
 
-js.config.properties.rootObject.navigationTopQuery: 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX fcahb: <https://ld.eccenca.com/fca-handbook/> SELECT DISTINCT ?resource ?hasChildren  {{FROM}}  WHERE { { ?resource a fcahb:Chapter  . }     OPTIONAL{ ?child fcahb:parent ?resource .  }     OPTIONAL{ ?resource rdfs:label ?label . }     BIND(IF(BOUND(?child), "hasChildren", "noChildren") AS ?hasChildren) .     FILTER (!CONTAINS(STR(?resource), "https://vocab.eccenca.com/doc/")) .    FILTER (!regex( STR(?resource), "^http://(www.w3.org/(2002/07/owl|2000/01/rdf-schema|1999/02/22-rdf-syntax-ns))#", "i")) .   } ORDER BY ASC(?label) '
+js.config.properties.rootObject.dataintegration: |
+  {
+    "urlRestApi": "http://docker.local:8080/dataintegration/",
+    "dummyDefaultProjectId": "cmem"
+  }
 
-js.config.properties.rootObject.navigationSubQuery: '  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>   PREFIX owl: <http://www.w3.org/2002/07/owl#>   PREFIX fcahb: <https://ld.eccenca.com/fca-handbook/>  SELECT DISTINCT ?resource ?hasChildren   {{FROM}}   WHERE { 
-    ?resource fcahb:parent {{RESOURCE}} .      OPTIONAL { ?child fcahb:parent ?resource . }     OPTIONAL { ?resource rdfs:label ?label . }  
-    OPTIONAL { ?resource fcahb:index ?index . }     BIND(IF(BOUND(?child), "hasChildren", "noChildren") AS ?hasChildren)   } ORDER BY ASC(?index) '
+js.config.properties.rootObject.datasetManagement: |
+  {
+    "graph": "https://ns.eccenca.com/example/data/dataset/"
+  }
+
+js.config.properties.rootObject.vocabularyManagement: |
+  {
+    "graph": "https://ns.eccenca.com/example/data/vocabs/"
+  }
 
 ###########
 # Logging #

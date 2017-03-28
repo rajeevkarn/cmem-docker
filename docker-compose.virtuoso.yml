@@ -1,8 +1,10 @@
 version: '2'
 services:
-  elds:
-    build: .
+  cmem:
+    build: cmem/
     hostname: docker.local
+    environment:
+      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=virtuoso"
     volumes:
       - ./etc:/opt/elds/etc
     ports:

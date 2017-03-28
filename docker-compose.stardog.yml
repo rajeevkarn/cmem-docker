@@ -1,0 +1,27 @@
+version: '2'
+services:
+  cmem:
+    build: cmem/
+    hostname: docker.local
+    environment:
+      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=stardog"
+    volumes:
+      - ./etc:/opt/elds/etc
+    ports:
+      - "8080:8080"
+    depends_on:
+      - stardog
+    links:
+      - stardog
+  stardog:
+    build: stardog/
+    # image: docker-registry.eccenca.com/complexible-stardog:v4.2.3-1
+    volumes:
+      - stardog-data:/data
+    ports:
+      - "5820:5820"
+
+volumes:
+  stardog-data:
+    external:
+      name: stardog-data
