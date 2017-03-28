@@ -1,2 +1,7 @@
-artifacts/*.zip
+cmem/*.zip
+stardog/stardog-license-key.bin
+stardog/*.zip
 dist/data*
+datamanager.log
+dataplatform.log
+etc/*.log.*

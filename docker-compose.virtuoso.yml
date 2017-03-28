@@ -1,0 +1,26 @@
+version: '2'
+services:
+  cmem:
+    build: cmem/
+    hostname: docker.local
+    environment:
+      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=virtuoso"
+    volumes:
+      - ./etc:/opt/elds/etc
+    ports:
+      - "8080:8080"
+    depends_on:
+      - virtuoso
+    links:
+      - virtuoso
+  virtuoso:
+    image: eccenca/virtuoso7:7.2.0.1-3
+    volumes:
+      - virtuoso-data:/data
+    ports:
+      - "8890:8890"
+
+volumes:
+  virtuoso-data:
+    external:
+      name: virtuoso-data
