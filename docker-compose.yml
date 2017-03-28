@@ -1,7 +1,7 @@
 version: '2'
 services:
   cmem:
-    build: .
+    build: cmem/
     hostname: docker.local
     environment:
       CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m"

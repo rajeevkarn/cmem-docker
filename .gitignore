@@ -1,4 +1,4 @@
-artifacts/*.zip
+cmem/*.zip
 dist/data*
 datamanager.log
 dataplatform.log
