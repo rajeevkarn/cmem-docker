@@ -5,6 +5,9 @@ js.config.properties.rootObject.workspaces: |
     "endpointName": "Default endpoint",
     "defaultGraph": "",
     "authorizationType": "oauth2",
+    "resourceEndpoints": [
+        "http://docker.local:8080/dataintegration/"
+    ],
     "oauth2": {
         "grantType": "implicit",
         "authorizeEndpoint": "http://docker.local:8080/dataplatform/oauth/authorize",
