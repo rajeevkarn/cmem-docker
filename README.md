@@ -53,7 +53,7 @@ You have the possibility to start this orchestration either with virtuoso or wit
     # Start CMEM and stardog
     docker-compose --file docker-compose.stardog.yml up
     ```
-1. continue with the rest of [Usage instructions](##usage-instructions)
+1. continue with the rest of [Usage instructions](#usage-instructions)
 
 ### Virtuoso specific instructions
 
@@ -69,18 +69,29 @@ You have the possibility to start this orchestration either with virtuoso or wit
     # Start CMEM and virtuoso
     docker-compose --file docker-compose.virtuoso.yml up
     ```
-1. continue with the rest of [Usage instructions](##usage-instructions)
+1. continue with the rest of [Usage instructions](#usage-instructions)
 
-## URIs
+## Applications
 
-- DataManager: http://docker.local:8080
-- DataPlatform: http://docker.local:8080/dataplatform
-- DataIntegration: http://docker.local:8080/dataintegration
+*CMEM*:
 
+-   DataManager: http://docker.local:8080
+-   DataPlatform: http://docker.local:8080/dataplatform
+-   DataIntegration: http://docker.local:8080/dataintegration
+
+*Backend*:
+
+-   Stardog http://docker.local:5820
+
+    Credentials are `admin/admin`, or
+-   Virtuoso http://docker.local:8890
+
+    Credentials are `dba/dba`
 
 ## Project Structure
 
-- `docker-compose.yml` docker container composition of CMEM and stardog image
+- `docker-compose.stardog.yml` docker container composition of CMEM and stardog image
+- `docker-compose.virtuoso.yml` docker container composition of CMEM and virtuoso image
 - `aksworg.trig` some sample data
 - `aksworg.ttl` some sample data
 - `README.md` this file
