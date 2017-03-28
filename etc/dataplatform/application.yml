@@ -97,3 +97,22 @@ sparqlEndpoints:
     database: "stardog"
     versioning:
       enabled: true
+
+---
+
+###
+# Configuration for virtuoso sparql endpoint
+###
+spring:
+  profiles: virtuoso
+
+sparqlEndpoints:
+  virtuoso:
+    - id : "default"
+      authorization : REWRITE_FROM # PROVISIONED # REWRITE_FROM # PROVISIONED # optional, default NONE
+      host : "virtuoso"
+      port : "1111"
+      username : "dba"
+      password : "dba"
+      versioning:
+        enabled: false

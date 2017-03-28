@@ -25,19 +25,51 @@ Furthermore you need to setup `docker.local` as an alias for your docker instanc
 
 ## Usage instructions
 
-To run CMEM and Stardog with docker on your local machine do:
+You have the possibility to start this orchestration either with virtuoso or with stardog as backend. Please follow the instructions below:
 
 1. run `git clone https://github.com/eccenca/cmem-docker.git && cd cmem-docker`
 1. login to https://artifactory.eccenca.com and download CMEM zip files listed in [cmem/README.md](cmem/README.md) into the `cmem` folder
-1. stardog is commercially licensed software. You need to obtain a copy of stardog and a license from complexible and place them into the `stardog` folder. For more details, have a look at [stardog/README.md](stardog/README.md)
-1. run `docker-compose build`
-1. run `docker volume create --name=stardog-data`
-1. run `docker-compose up`
+1. Now you have to choose if you want to run virtuoso or stardog as a triple store.
+
+    1.  If you want to use stardog, execute the steps described [here](#stardog-specific-instructions).
+    2.  If you want to use stardog, execute the steps described [here](#virtuoso-specific-instructions).
 1. open http://docker.local:8080 in your browser
 1. login: two sample users are configured `userA` and `userB` (password same as user name), where
     - `userA` can read all graphs
     - `userB` can read/write all graphs
 
+### Stardog specific instructions
+
+1. Stardog is commercially licensed software. You need to obtain a copy of stardog and a license from complexible and place them into the `stardog` folder. For more details, have a look at [stardog/README.md](stardog/README.md).
+1. Execute the following steps:
+
+    ```bash
+    # Create a docker volume where stardog will store it's data:
+    docker volume create --name=stardog-data
+
+    # Build the CMEM and the stardog image
+    docker-compose --file docker-compose.stardog.yml build
+
+    # Start CMEM and stardog
+    docker-compose --file docker-compose.stardog.yml up
+    ```
+1. continue with the rest of [Usage instructions](##usage-instructions)
+
+### Virtuoso specific instructions
+
+1. Execute the following steps:
+
+    ```bash
+    # Create a docker volume where virtuoso will store it's data:
+    docker volume create --name=virtuoso-data
+
+    # Build the CMEM image
+    docker-compose --file docker-compose.virtuoso.yml build
+
+    # Start CMEM and virtuoso
+    docker-compose --file docker-compose.virtuoso.yml up
+    ```
+1. continue with the rest of [Usage instructions](##usage-instructions)
 
 ## URIs
 
