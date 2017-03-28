@@ -32,7 +32,7 @@ You have the possibility to start this orchestration either with virtuoso or wit
 1. Now you have to choose if you want to run virtuoso or stardog as a triple store.
 
     1.  If you want to use stardog, execute the steps described [here](#stardog-specific-instructions).
-    2.  If you want to use stardog, execute the steps described [here](#virtuoso-specific-instructions).
+    2.  If you want to use virtuoso, execute the steps described [here](#virtuoso-specific-instructions).
 1. open http://docker.local:8080 in your browser
 1. login: two sample users are configured `userA` and `userB` (password same as user name), where
     - `userA` can read all graphs
