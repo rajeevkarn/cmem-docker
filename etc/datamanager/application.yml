@@ -1,48 +1,42 @@
-js.config.properties.rootObject.workspaces: |
-  [{
-    "endpoint": "http://docker.local:8080/dataplatform",
-    "endpointId": "default",
-    "endpointName": "Default endpoint",
-    "defaultGraph": "",
-    "authorizationType": "oauth2",
-    "resourceEndpoints": [
-        "http://docker.local:8080/dataintegration/"
-    ],
-    "oauth2": {
-        "grantType": "implicit",
-        "authorizeEndpoint": "http://docker.local:8080/dataplatform/oauth/authorize",
-        "clientId": "eldsClient"
-    }
-  }]
-js.config.properties.rootObject.hideEndpointInput: false
+js.config.workspaces:
+  default:
+    name: eccenca Corporate Memory
+    backend:
+      type: dataplatform
+      url: "http://docker.local:8080/dataplatform"
+      endpointId: default
+    authorization:
+      type: oauth2
+      oauth2:
+        clientId: eldsClient
+        grantType: implicit
+        authorizeUrl: "http://docker.local:8080/dataplatform/oauth/authorize"
 
-js.config.properties.rootObject.appPresentation: |
-  {
-    "name": "eccenca Corporate Memory",
-    "title": "eccenca Corporate Memory"
-  }
+js.config.appPresentation:
+  headerName: eccenca Corporate Memory
+  windowTitle: eccenca Corporate Memory
 
-js.config.properties.rootObject.rdfdoc: |
-  {
-    "fallbackOntology": true,
-    "fallbackSchema": false
-  }
+js.config.modules.datasets:
+  enable: true
+  graphUrl: "https://ns.eccenca.com/example/data/dataset/"
+  dataintegration:
+    url: "http://docker.local:8080/dataintegration/"
+    includeOAuthToken: true
+    project: cmem
 
-js.config.properties.rootObject.dataintegration: |
-  {
-    "urlRestApi": "http://docker.local:8080/dataintegration/",
-    "dummyDefaultProjectId": "cmem"
-  }
+js.config.modules.explore:
+  enable: true
+  startWith: true
+  graphlist:
+    listQuery: |
+      SELECT DISTINCT ?g WHERE {
+        GRAPH ?g { ?s ?p ?o }
+        FILTER (?g NOT IN (<http://www.w3.org/2002/07/owl#>,<http://www.w3.org/ns/ldp#>)) .
+      }
 
-js.config.properties.rootObject.datasetManagement: |
-  {
-    "graph": "https://ns.eccenca.com/example/data/dataset/"
-  }
-
-js.config.properties.rootObject.vocabularyManagement: |
-  {
-    "graph": "https://ns.eccenca.com/example/data/vocabs/"
-  }
+js.config.modules.vocabulary:
+  enable: true
+  graphUrl: "https://ns.eccenca.com/example/data/vocabs/"
 
 ###########
 # Logging #
