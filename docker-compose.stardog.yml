@@ -7,12 +7,14 @@ services:
       CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=stardog"
     volumes:
       - ./etc:/opt/elds/etc
+      - ./data:/data
     ports:
       - "8080:8080"
     depends_on:
       - stardog
     links:
       - stardog
+    command: /opt/elds/etc/import.sh
   stardog:
     build: stardog/
     # image: docker-registry.eccenca.com/complexible-stardog:v4.2.3-1

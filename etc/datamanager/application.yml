@@ -18,6 +18,7 @@ js.config.appPresentation:
 
 js.config.modules.datasets:
   enable: true
+  startWith: true
   graphUrl: "https://ns.eccenca.com/example/data/dataset/"
   dataintegration:
     url: "http://docker.local:8080/dataintegration/"
@@ -26,7 +27,6 @@ js.config.modules.datasets:
 
 js.config.modules.explore:
   enable: true
-  startWith: true
   graphlist:
     listQuery: |
       SELECT DISTINCT ?g WHERE {
