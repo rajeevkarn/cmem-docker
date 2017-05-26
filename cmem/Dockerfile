@@ -31,3 +31,5 @@ RUN \
   && ln -sf ${ELDS_HOME}/dist/datamanager/etc/datamanager.xml.dist ${CATALINA_HOME}/conf/Catalina/localhost/ROOT.xml \
   && ln -sf ${ELDS_HOME}/dist/dataintegration/lib/eccenca-DataIntegration.war ${CATALINA_HOME}/webapps/dataintegration.war
 
+CMD /opt/elds/etc/import.sh
+
