@@ -13,6 +13,9 @@ done
 
 echo "DataPlatform online, importing data ..."
 
+rdf gsp-put https://ns.eccenca.com/example/virtuoso-datatypes/ /data/dataplatform/datatypes.ttl http://localhost:8080/dataplatform/proxy/default/graph
+rdf gsp-put https://ns.eccenca.com/example/virtuoso-datatypes/ /data/dataplatform/datatypes.ttl http://localhost:8080/dataplatform/proxy/default/graph
+rdf gsp-delete https://ns.eccenca.com/example/virtuoso-datatypes/ http://localhost:8080/dataplatform/proxy/default/graph
 rdf gsp-put https://ns.eccenca.com/example/data/dataset/ /data/dataplatform/datasets.ttl http://localhost:8080/dataplatform/proxy/default/graph
 rdf gsp-put https://vocab.eccenca.com/dsm/ /data/dataplatform/dsm.ttl http://localhost:8080/dataplatform/proxy/default/graph
 rdf gsp-put http://di.eccenca.com/project/cmem /data/dataplatform/empty-cmem-di-project.ttl http://localhost:8080/dataplatform/proxy/default/graph
