@@ -7,6 +7,8 @@ services:
       CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=stardog"
     volumes:
       - ./etc:/opt/elds/etc
+      - ./data:/data
+      - ./data/dataintegration/datalake:/opt/elds/var/dataintegration/resources
     ports:
       - "8080:8080"
     depends_on:

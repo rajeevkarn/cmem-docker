@@ -1,6 +1,6 @@
-# CMEM Docker orchestration
+# eccenca Corporate Memory Docker orchestration
 
-This orchestration bundles CMEM and enables you to evaluate it easily on your own PC.
+This orchestration bundles Corporate Memory and enables you to evaluate it easily on your own PC.
 
 ## Requirements
 
@@ -28,8 +28,9 @@ Furthermore you need to setup `docker.local` as an alias for your docker instanc
 You have the possibility to start this orchestration either with virtuoso or with stardog as backend. Please follow the instructions below:
 
 1. run `git clone https://github.com/eccenca/cmem-docker.git && cd cmem-docker`
-1. login to https://artifactory.eccenca.com and download CMEM zip files listed in [cmem/README.md](cmem/README.md) into the `cmem` folder
-1. Now you have to choose if you want to run virtuoso or stardog as a triple store.
+1. Download the eccenca Corporate Memory release artifacts listed in [cmem/README.md](cmem/README.md) into the `cmem` folder
+1. Download the eccenca Corporate Memory inital data artifacts listed in [data/README.md](data/README.md) into the `data` folder
+1. Now you have to choose if you want to run virtuoso or stardog as a triple store:
 
     1.  If you want to use stardog, execute the steps described [here](#stardog-specific-instructions).
     2.  If you want to use virtuoso, execute the steps described [here](#virtuoso-specific-instructions).
@@ -47,10 +48,10 @@ You have the possibility to start this orchestration either with virtuoso or wit
     # Create a docker volume where stardog will store it's data:
     docker volume create --name=stardog-data
 
-    # Build the CMEM and the stardog image
+    # Build the Corporate Memory and the stardog image
     docker-compose --file docker-compose.stardog.yml build
 
-    # Start CMEM and stardog
+    # Start Corporate Memory and stardog
     docker-compose --file docker-compose.stardog.yml up
     ```
 1. continue with the rest of [Usage instructions](#usage-instructions)
@@ -63,17 +64,17 @@ You have the possibility to start this orchestration either with virtuoso or wit
     # Create a docker volume where virtuoso will store it's data:
     docker volume create --name=virtuoso-data
 
-    # Build the CMEM image
+    # Build the Corporate Memory image
     docker-compose --file docker-compose.virtuoso.yml build
 
-    # Start CMEM and virtuoso
+    # Start Corporate Memory and virtuoso
     docker-compose --file docker-compose.virtuoso.yml up
     ```
 1. continue with the rest of [Usage instructions](#usage-instructions)
 
 ## Applications
 
-*CMEM*:
+*Corporate Memory*:
 
 -   DataManager: http://docker.local:8080
 -   DataPlatform: http://docker.local:8080/dataplatform
@@ -90,13 +91,13 @@ You have the possibility to start this orchestration either with virtuoso or wit
 
 ## Project Structure
 
-- `docker-compose.stardog.yml` docker container composition of CMEM and stardog image
-- `docker-compose.virtuoso.yml` docker container composition of CMEM and virtuoso image
-- `aksworg.trig` some sample data
-- `aksworg.ttl` some sample data
+- `docker-compose.stardog.yml` docker container composition of Corporate Memory and stardog image
+- `docker-compose.virtuoso.yml` docker container composition of Corporate Memory and virtuoso image
 - `README.md` this file
-- `cmem/` folder that should hold the downloaded CMEM artifacts
-- `cmem/Dockerfile` docker file to build the CMEM image
-- `etc/` individual run-time configuration for the CMEM components
+- `cmem/` folder that should hold the downloaded Corporate Memory artifacts
+- `cmem/Dockerfile` docker file to build the Corporate Memory image
+- `data/` folder for initial data
+- `etc/` individual run-time configuration for the Corporate Memory components
 - `stardog/` folder that should hold the downloaded stardog artifacts
 - `stardog/Dockerfile` docker file to build the stardog image
+

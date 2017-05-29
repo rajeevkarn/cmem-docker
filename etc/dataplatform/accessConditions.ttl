@@ -23,3 +23,9 @@
     eccauth:readGraph <urn:elds-backend-all-graphs> ;
     eccauth:allowedAction <urn:elds-backend-actions-revision-api>, <urn:eccenca:di> ;
 .
+
+# delete this access condition to remove write access for anonymous users
+:AnonymousWriteAccess a eccauth:AccessCondition ;
+    eccauth:requiresGroup <urn:elds-backend-public-group> ;
+    eccauth:writeGraph <urn:elds-backend-all-graphs> ;
+.

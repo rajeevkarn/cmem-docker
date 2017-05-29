@@ -16,6 +16,11 @@ RUN \
 
 WORKDIR ${ELDS_HOME}/dist
 
+# install rdf.sh
+RUN \
+  wget -O /usr/local/bin/rdf https://raw.githubusercontent.com/seebi/rdf.sh/develop/rdf && \
+  chmod +x /usr/local/bin/rdf
+
 # link the wars to catalina/webapps
 RUN \
   rm -rf ${CATALINA_HOME}/webapps/ROOT \
@@ -25,3 +30,6 @@ RUN \
   && ln -sf ${ELDS_HOME}/dist/datamanager/lib/eccenca-DataManager.war ${CATALINA_HOME}/webapps/ROOT.war \
   && ln -sf ${ELDS_HOME}/dist/datamanager/etc/datamanager.xml.dist ${CATALINA_HOME}/conf/Catalina/localhost/ROOT.xml \
   && ln -sf ${ELDS_HOME}/dist/dataintegration/lib/eccenca-DataIntegration.war ${CATALINA_HOME}/webapps/dataintegration.war
+
+CMD /opt/elds/etc/import.sh
+
