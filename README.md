@@ -21,6 +21,7 @@ Furthermore you need to setup `docker.local` as an alias for your docker instanc
 
 # Example if you use macOS/docker-machine
 192.168.99.100    docker.local
+::1               docker.local
 ```
 
 ## Usage instructions
