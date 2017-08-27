@@ -12,9 +12,9 @@
 authorization:
   abox:
     prefix: "http://eccenca.com/"
+#    adminGroup: "ECCENCA-GMBH"
   accessConditions:
     url: "/opt/elds/etc/dataplatform/accessConditions.ttl"
-
 
 ################################################################################
 ### OAuth 2
@@ -28,6 +28,7 @@ oauth2:
         - "implicit"
         - "authorization_code"
         - "password"
+        - "refresh_token"
 
 ################################################################################
 ### Authentication
@@ -46,7 +47,6 @@ authentication:
           - "group_user"
           - "group_user_b"
 
-
 ################################################################################
 ### Security
 ################################################################################
@@ -59,8 +59,8 @@ http:
 ### Proxy
 ################################################################################
 proxy:
-  - "default"
-
+  endpointIds:
+    - "default"
 
 ################################################################################
 ### Logging
@@ -68,9 +68,10 @@ proxy:
 logging:
   file: "/opt/elds/etc/dataplatform.log"
   level:
-    root: WARN
-    com.eccenca.elds.backend: INFO
-    org.springframework: WARN
+    com.eccenca.elds.backend: DEBUG # default INFO
+    org.springframework: INFO
+    # com.eccenca.elds.backend.stardog: INFO
+    # com.eccenca.elds.backend.webapp.config: INFO
 
 ################################################################################
 ### SPARQL endpoints
@@ -116,3 +117,24 @@ sparqlEndpoints:
       password : "dba"
       versioning:
         enabled: false
+
+---
+
+###
+# Configuration for apache marmotta sparql endpoint http://marmotta.apache.org/
+###
+spring:
+  profiles: marmotta
+
+sparqlEndpoints:
+  http:
+  - id: 'default'
+    authorization: REWRITE_FROM
+    queryEndpointUrl:  'http://marmotta:8080/marmotta/sparql/select'
+    updateEndpointUrl: 'http://marmotta:8080/marmotta/sparql/update'
+    sync:
+      subscriber:
+        enabled: false # default true
+      publisher:
+        enabled: false
+
