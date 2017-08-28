@@ -1,0 +1,28 @@
+version: '2'
+services:
+  cmem:
+    build: cmem/
+    hostname: docker.local
+    environment:
+      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=blazegraph"
+    volumes:
+      - ./etc:/opt/elds/etc
+      - ./data:/data
+      - ./data/dataintegration/datalake:/opt/elds/var/dataintegration/resources
+    ports:
+      - "80:8080"
+    depends_on:
+      - blazegraph
+    links:
+      - blazegraph
+  blazegraph:
+    image: systap-blazegraph:latest
+#    volumes:
+#      - virtuoso-data:/data
+    ports:
+      - "9999:9999"
+
+#volumes:
+#  virtuoso-data:
+#    external:
+#      name: virtuoso-data

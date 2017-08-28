@@ -138,3 +138,22 @@ sparqlEndpoints:
       publisher:
         enabled: false
 
+---
+
+###
+# Configuration for systap-blazegraph
+###
+spring:
+  profiles: blazegraph
+
+sparqlEndpoints:
+  http:
+  - id: 'default'
+    authorization: REWRITE_FROM
+    queryEndpointUrl:  'http://blazegraph:9999/bigdata/sparql'
+    updateEndpointUrl: 'http://blazegraph:9999/bigdata/sparql'
+    sync:
+      subscriber:
+        enabled: false # default true
+      publisher:
+        enabled: false
