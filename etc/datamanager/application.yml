@@ -1,6 +1,6 @@
 js.config.workspaces:
   default:
-    name: eccenca Corporate Memory
+    name: eccenca Corporate Memory (Port 8080)
     backend:
       type: dataplatform
       url: "http://docker.local:8080/dataplatform"
@@ -11,6 +11,18 @@ js.config.workspaces:
         clientId: eldsClient
         grantType: implicit
         authorizeUrl: "http://docker.local:8080/dataplatform/oauth/authorize"
+  default80:
+    name: eccenca Corporate Memory (Port 80)
+    backend:
+      type: dataplatform
+      url: "http://docker.local/dataplatform"
+      endpointId: default
+    authorization:
+      type: oauth2
+      oauth2:
+        clientId: eldsClient
+        grantType: implicit
+        authorizeUrl: "http://docker.local/dataplatform/oauth/authorize"
 
 js.config.appPresentation:
   headerName: eccenca Corporate Memory

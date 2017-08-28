@@ -10,7 +10,7 @@ services:
       - ./data:/data
       - ./data/dataintegration/datalake:/opt/elds/var/dataintegration/resources
     ports:
-      - "8080:8080"
+      - "80:8080"
     depends_on:
       - marmotta
     links:
@@ -20,7 +20,7 @@ services:
 #    volumes:
 #      - virtuoso-data:/data
     ports:
-      - "8081:8080"
+      - "8080:8080"
 
 #volumes:
 #  virtuoso-data:
