@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cmem-testingress
+  namespace: cmem-k8s
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: cmem-k8s.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: cmem-dm
+          servicePort: 80
+      - path: /dataplatform
+        backend:
+          serviceName: cmem-dp
+          servicePort: 80
+      - path: /dataintegration
+        backend:
+          serviceName: cmem-di
+          servicePort: 80

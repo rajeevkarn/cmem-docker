@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmem-deployment-config
+  namespace: cmem-k8s
+data:
+  DEPLOY_BASE_URL: "https://cmem-k8s.example.com"
+  DEPLOY_PROTOCOL: "https"
+  SPRING_PROFILES_ACTIVE: "stardog"
+  DATAINTEGRATION_EXECUTOR: "ExecuteLocalWorkflow"
+  DATAINTEGRATION_CONTEXT: "/dataintegration"
+  DATAINTEGRATION_APPLICATION_SECRET: "YOUR_APPLICATION_SECRET"
+  SERVER_CONTEXTPATH: "/dataplatform"
+  SPARQLENDPOINTS_STARDOG_USERPASSWORDSALT: "YOUR_USERPASSWD_SALT"
+  ENDPOINTS_ENV_ENABLED: "true"
