@@ -9,7 +9,7 @@ In order to use a docker image for eccenca DataIntegration you have to provide t
 The artifact can be downloaded from eccenca.com (using proper credentials):
 To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
 
-- [https://artifactory.eccenca.com/cmem/eccenca-DataIntegration/eccenca-DataIntegration-v4.0.1.zip](https://artifactory.eccenca.com/cmem/eccenca-DataIntegration/eccenca-DataIntegration-v4.0.1.zip)
+- [https://artifactory.eccenca.com/cmem/eccenca-DataIntegration/eccenca-DataIntegration-v4.0.2.zip](https://artifactory.eccenca.com/cmem/eccenca-DataIntegration/eccenca-DataIntegration-v4.0.2.zip)
 
 Download the `.zip` files and put them into this directory (`DataIntegration`).
 

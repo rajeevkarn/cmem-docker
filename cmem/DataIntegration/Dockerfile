@@ -1,7 +1,7 @@
 FROM java:8u111-jre
 
-ENV ECC_IMAGE_PREFIX k8s-eccenca
-ENV ECC_IMAGE_NAME dataintegration
+ENV ECC_IMAGE_PREFIX eccenca
+ENV ECC_IMAGE_NAME dataintegration-k8s
 
 ENV \
   ELDS_HOME="/opt/elds" \
@@ -23,7 +23,7 @@ RUN \
   mkdir -p ${ELDS_HOME}/dist ${ELDS_HOME}/etc/dataintegration ${ELDS_HOME}/var/log \
   && unzip /tmp/eccenca-DataIntegration*.zip -d /tmp/dataintegration \
   && unzip /tmp/dataintegration/eccenca-DataIntegration*/lib/*cloudfoundry.zip -d ${ELDS_HOME}/dist \
-  && ln -s ${ELDS_HOME}/dist/eccenca-dataintegration-* ${ELDS_HOME}/dist/dataintegration \
+  && ln -s ${ELDS_HOME}/dist/eccenca-DataIntegration-* ${ELDS_HOME}/dist/dataintegration \
   && cp -nr /tmp/dataintegration/eccenca-DataIntegration-v*/etc/dataintegration.conf.dist ${ELDS_HOME}/etc/dataintegration/dataintegration.conf.dist \
   && cp -n /tmp/dataintegration/eccenca-DataIntegration-v*/lib/eccenca-DataIntegration-assembly.jar ${ELDS_HOME}/dist/dataintegration/spark-assembly.jar \
   && rm -rf /tmp/eccenca-DataIntegration.zip /tmp/dataintegration*

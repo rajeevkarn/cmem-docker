@@ -9,7 +9,7 @@ In order to use a docker image for eccenca DataManager you have to provide the f
 The artifact can be downloaded from eccenca.com (using proper credentials):
 To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
 
-- [https://artifactory.eccenca.com/cmem/eccenca-DataManager/eccenca-DataManager-v4.1.0.zip](https://artifactory.eccenca.com/cmem/eccenca-DataManager/eccenca-DataManager-v4.1.0.zip)
+- [https://artifactory.eccenca.com/cmem/eccenca-DataManager/eccenca-DataManager-v4.1.1.zip](https://artifactory.eccenca.com/cmem/eccenca-DataManager/eccenca-DataManager-v4.1.1.zip)
 
 Download the `.zip` files and put them into this directory (`DataManager`).
 
