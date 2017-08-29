@@ -4,7 +4,7 @@ services:
     build: cmem/
     hostname: docker.local
     environment:
-      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=stardog"
+      CATALINA_OPTS: "-Xmx8g -Dspring.profiles.active=stardog"
     volumes:
       - ./etc:/opt/elds/etc
       - ./data:/data

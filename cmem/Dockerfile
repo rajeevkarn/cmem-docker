@@ -2,7 +2,7 @@ FROM tomcat:8.5
 
 ENV \
   ELDS_HOME=/opt/elds \
-  CATALINA_OPTS="-Xmx2g -XX:MaxPermSize=512m"
+  CATALINA_OPTS="-Xmx8g"
 
 COPY eccenca-*.zip /tmp/
 RUN \
