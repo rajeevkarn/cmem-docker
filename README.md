@@ -101,4 +101,3 @@ You have the possibility to start this orchestration either with virtuoso or wit
 - `etc/` individual run-time configuration for the Corporate Memory components
 - `stardog/` folder that should hold the downloaded stardog artifacts
 - `stardog/Dockerfile` docker file to build the stardog image
-

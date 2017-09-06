@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 - dockerfiles for the `DataPlatform`, `DataIntegration` and `DataManager`
+- kubernetes deployment templates
 
 ### Changed
 
