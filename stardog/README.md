@@ -1,6 +1,6 @@
 # How to download the required artifacts
 
-In order to use eccenca Corporate Memory (CMEM) with stardog you have to provide the following software artifacts:
+In order to use eccenca Corporate Memory with stardog you have to provide the following software artifacts:
 
 -   `stardog-4.2.3.zip`
 

@@ -4,7 +4,7 @@ services:
     build: cmem/
     hostname: docker.local
     environment:
-      CATALINA_OPTS: "-Xmx2g -XX:MaxPermSize=512m -Dspring.profiles.active=stardog"
+      CATALINA_OPTS: "-Xmx6g -Dspring.profiles.active=stardog"
     volumes:
       - ./etc:/opt/elds/etc
       - ./data:/data
@@ -22,6 +22,8 @@ services:
       - stardog-data:/data
     ports:
       - "5820:5820"
+    environment:
+      - "JAVA_MAX_MEM=2g"
 
 volumes:
   stardog-data:

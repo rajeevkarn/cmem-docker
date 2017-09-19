@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- dockerfiles for the `DataPlatform`, `DataIntegration` and `DataManager`
+- kubernetes deployment templates
+
 ### Changed
 
 - default link for data artifact download

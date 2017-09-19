@@ -4,6 +4,8 @@ This orchestration bundles Corporate Memory and enables you to evaluate it easil
 
 ## Requirements
 
+You should have at least 6GB of RAM available to run Corporate Memory docker.
+
 You need to have the following software set up:
 
 - `git`
@@ -101,4 +103,3 @@ You have the possibility to start this orchestration either with virtuoso or wit
 - `etc/` individual run-time configuration for the Corporate Memory components
 - `stardog/` folder that should hold the downloaded stardog artifacts
 - `stardog/Dockerfile` docker file to build the stardog image
-
