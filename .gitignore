@@ -1,9 +1,7 @@
-cmem/*.zip
+*.zip
 stardog/stardog-license-key.bin
-stardog/*.zip
 dist/data*
 datamanager.log
 dataplatform.log
 etc/*.log.*
 data/data*
-data/*.zip

@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cmem-stardog
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: stardog
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: cmem
+        role: stardog
+    spec:
+      containers:
+        - name: stardog
+          image: docker-registry.eccenca.com/complexible-stardog-k8s:v4.2.3-3
+          env:
+            - name: "JAVA_MAX_MEM"
+              value: "1g"
+          ports:
+            - name: default-port
+              containerPort: 5820
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            limits:
+              cpu: "4"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: default-port
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: default-port
+            initialDelaySeconds: 30
+            periodSeconds: 15
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: eccenca-registry-credentials
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: cmem-persistent-storage

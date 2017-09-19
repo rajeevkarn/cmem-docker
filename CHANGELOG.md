@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.1.0] 2017-09-19
+
+### Added
+- Separate Dockerfiles for the `DataPlatform`, `DataIntegration` and `DataManager` are now available
+  in the apropriate directories
+- Exemplaric kubernetes deployment templates have been added
+
+### Changed
+
+- Updated links for data artifact downloads
+
+### Fixed 
+
+- Importer now imports sample data correctly
+
 ## [2.0.0] 2017-05-29
 
 ### Added

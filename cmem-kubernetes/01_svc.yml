@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmem-dm
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: dm
+spec:
+  type: NodePort
+  selector:
+    component: cmem
+    role: dm
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmem-dp
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: dp
+spec:
+  type: NodePort
+  selector:
+    component: cmem
+    role: dp
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmem-di
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: di
+spec:
+  type: NodePort
+  selector:
+    component: cmem
+    role: di
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+---
+## service to get connected to stardog
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmem-database
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: database
+spec:
+  selector:
+    component: cmem
+    role: stardog
+  ports:
+  - name: default-port
+    port: 5820
+  clusterIP: None
+---
+## service to get connected to redis
+apiVersion: v1
+kind: Service
+metadata:
+  name: cmem-cache
+  namespace: cmem-k8s
+  labels:
+    component: cmem
+    role: cache
+spec:
+  selector:
+    component: cmem
+    role: cache
+  ports:
+  - name: default-port
+    port: 6379
+  clusterIP: None
