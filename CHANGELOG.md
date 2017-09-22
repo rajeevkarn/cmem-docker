@@ -5,7 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+### Removed
+- unused file
 
 ## [2.1.0] 2017-09-19
 
@@ -18,7 +19,7 @@ TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security se
 
 - Updated links for data artifact downloads
 
-### Fixed 
+### Fixed
 
 - Importer now imports sample data correctly
 
