@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
+
+TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+
 ## [2.1.1] 2017-09-22
 
 ### Removed
