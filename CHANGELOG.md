@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.1.1] 2017-09-22
+
+### Removed
+- unused file
+
 ## [2.1.0] 2017-09-19
 
 ### Added
@@ -14,7 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Updated links for data artifact downloads
 
-### Fixed 
+### Fixed
 
 - Importer now imports sample data correctly
 
