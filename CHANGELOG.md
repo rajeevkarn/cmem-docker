@@ -7,7 +7,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
 
-
 ## [2.1.1] 2017-09-22
 
 ### Removed
