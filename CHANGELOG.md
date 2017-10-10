@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.2.0] 2017-10-10
+
+### Changed
+
+- Forward used versions of Corporate Memory to
+    - `DataIntegration@4.1.0`
+    - `DataManager@4.1.2`
+    - `DataPlatform@9.2.0`
+
 ## [2.1.1] 2017-09-22
 
 ### Removed

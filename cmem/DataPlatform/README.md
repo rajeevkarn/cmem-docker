@@ -9,7 +9,7 @@ In order to use a docker image for eccenca DataPlatform you have to provide the 
 The artifact can be downloaded from eccenca.com (using proper credentials):
 To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
 
-- [https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.1.1.zip](https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.1.1.zip)
+- [https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.2.0.zip](https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.2.0.zip)
 
 Download the `.zip` files and put them into this directory (`DataPlatform`).
 
@@ -25,13 +25,13 @@ This can be used to start the eccenca DataPlatform in a standalone docker contai
 The docker image can be downloaded from the eccenca docker registry(using proper credentials):
 To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
 
-Therefore please login into the eccenca docker registry useing the follwing command:
+Therefore please login into the eccenca docker registry using the following command:
 
 ```bash
 docker login https://docker-registry.eccenca.com
 ```
 
-After a successful login you can pull the prebuild docker image:
+After a successful login you can pull the pre-build docker image:
 
 ```bash
 docker pull docker-registry.eccenca.com/eccenca-dataplatform-k8s:latest

@@ -16,9 +16,13 @@ spec:
     spec:
       containers:
         - name: stardog
-          image: docker-registry.eccenca.com/complexible-stardog-k8s:v4.2.3-3
+          image: docker-registry.eccenca.com/complexible-stardog-k8s:v4.2.3-6
           env:
+            - name: "JAVA_MIN_MEM"
+              value: "1g"
             - name: "JAVA_MAX_MEM"
+              value: "1g"
+            - name: "JAVA_MAX_DIRECT_MEM"
               value: "1g"
           ports:
             - name: default-port
@@ -30,7 +34,7 @@ spec:
           resources:
             limits:
               cpu: "4"
-              memory: "1Gi"
+              memory: "2Gi"
           readinessProbe:
             httpGet:
               path: /
