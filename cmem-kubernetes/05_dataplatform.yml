@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eccenca-dataplatform
-          image: docker-registry.eccenca.com/eccenca-dataplatform-k8s:v9.1.1
+          image: docker-registry.eccenca.com/eccenca-dataplatform-k8s:v9.2.0
           env:
             - name: NAMESPACE
               valueFrom:

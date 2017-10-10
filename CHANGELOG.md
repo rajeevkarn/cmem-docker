@@ -5,7 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+### Changed
+
+- Forward used versions of Corporate Memory to
+    - `DataIntegration@4.1.0`
+    - `DataManager@4.1.2`
+    - `DataPlatform@9.2.0`
 
 ## [2.1.1] 2017-09-22
 

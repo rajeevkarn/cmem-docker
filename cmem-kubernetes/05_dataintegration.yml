@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eccenca-dataintegration
-          image: docker-registry.eccenca.com/eccenca-dataintegration-k8s:v4.0.2
+          image: docker-registry.eccenca.com/eccenca-dataintegration-k8s:v4.1.0
           env:
             - name: NAMESPACE
               valueFrom:
