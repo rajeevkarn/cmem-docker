@@ -26,6 +26,11 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: SERVER_CONTEXTPATH
+              valueFrom:
+                configMapKeyRef:
+                  name: cmem-deployment-config
+                  key: DATAPLATFORM_CONTEXT
           envFrom:
           - configMapRef:
               name: cmem-deployment-config
