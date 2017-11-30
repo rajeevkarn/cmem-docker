@@ -85,6 +85,13 @@ sparqlEndpoints:
 ###
 spring:
   profiles: stardog
+  autoconfigure:
+      exclude:
+        # disable dataSource auto-config as it breaks dataSource-less deployment in a servlet container
+        - "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"
+        # disable transaction management as it breaks spring-security-oauth
+        - "org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration"
+
 
 sparqlEndpoints:
   stardog:
@@ -105,6 +112,13 @@ sparqlEndpoints:
 ###
 spring:
   profiles: virtuoso
+  autoconfigure:
+      exclude:
+        # disable dataSource auto-config as it breaks dataSource-less deployment in a servlet container
+        - "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration"
+        # disable transaction management as it breaks spring-security-oauth
+        - "org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration"
+
 
 sparqlEndpoints:
   virtuoso:
