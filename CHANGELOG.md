@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.3.0] 2017-11-30
+
+### Fixed
+
+- Added config fix for tomcat related startup error
+
 ## [2.2.0] 2017-10-10
 
 ### Changed

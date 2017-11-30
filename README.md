@@ -52,7 +52,7 @@ You have the possibility to start this orchestration either with virtuoso or wit
     docker volume create --name=stardog-data
 
     # Build the Corporate Memory and the stardog image
-    docker-compose --file docker-compose.stardog.yml build
+    docker-compose --file docker-compose.stardog.yml build --no-cache
 
     # Start Corporate Memory and stardog
     docker-compose --file docker-compose.stardog.yml up
@@ -68,7 +68,7 @@ You have the possibility to start this orchestration either with virtuoso or wit
     docker volume create --name=virtuoso-data
 
     # Build the Corporate Memory image
-    docker-compose --file docker-compose.virtuoso.yml build
+    docker-compose --file docker-compose.virtuoso.yml build --no-cache
 
     # Start Corporate Memory and virtuoso
     docker-compose --file docker-compose.virtuoso.yml up
