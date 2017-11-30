@@ -5,7 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+### Fixed
+
+- Added config fix for tomcat related startup error
 
 ## [2.2.0] 2017-10-10
 
