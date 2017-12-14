@@ -1,10 +1,11 @@
 version: '2'
 services:
   cmem:
+    image: eccenca/cmem:v2.3.1
     build: cmem/
     hostname: docker.local
     environment:
-      CATALINA_OPTS: "-Xmx8g -Dspring.profiles.active=virtuoso"
+      CATALINA_OPTS: "-Xmx4g -Dspring.profiles.active=virtuoso"
     volumes:
       - ./etc:/opt/elds/etc
       - ./data:/data

@@ -38,7 +38,4 @@ js.config.modules.vocabulary:
   enable: true
   graphUrl: "https://ns.eccenca.com/example/data/vocabs/"
 
-###########
-# Logging #
-###########
 logging.file: "/opt/elds/etc/datamanager.log"

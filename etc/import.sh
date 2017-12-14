@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "Starting tomcat"
+echo "### Starting Tomcat..."
 
 sh /usr/local/tomcat/bin/startup.sh
 
-echo "Waiting for DataPlatform to come online ..."
+echo "### Waiting for DataPlatform to come online..."
 
 function testUri() {
 
@@ -23,21 +23,22 @@ function testUri() {
 }
 
 until testUri; do
-    echo "still waiting for DataPlatform to come online..."
+    echo "### Still waiting for DataPlatform to come online..."
     sleep 5
 done
 
-echo "DataPlatform online, importing data ..."
+echo "### DataPlatform online, importing data ..."
 
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datatypes.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fns.eccenca.com%2fexample%2fvirtuoso-datatypes%2f"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datatypes.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fns.eccenca.com%2fexample%2fvirtuoso-datatypes%2f"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datasets.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fdataset%2f"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/dsm.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fvocab.eccenca.com%2fdsm%2f"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/empty-cmem-di-project.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=http%3a%2f%2fdi.eccenca.com%2fproject%2fcmem"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/sketch.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fvocab.eccenca.com%2fsketch%2f"
-curl -v -L -X PUT -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/vocabs.ttl "http://localhost:8080/dataplatform/proxy/default/graph?graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fvocabs%2f"
+access_token=$(curl -X POST -s -u eldsClient:secret http://localhost:8080/dataplatform/oauth/token -H "Accept: application/json" -d "password=userB&username=userB&grant_type=password&client_secret=secret&client_id=eldsClient" | perl -ne 'if(s/.*"access_token"\s*:\s*"([^"]+).*/$1/){print;exit}')
 
-echo "Finished importing data. Now tailing tomcat log ..."
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datatypes.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fvirtuoso-datatypes%2f"
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datasets.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fdataset%2f"
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/dsm.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fdsm%2f"
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/empty-cmem-di-project.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=http%3a%2f%2fdi.eccenca.com%2fproject%2fcmem"
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/sketch.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fsketch%2f"
+curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/vocabs.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fvocabs%2f"
+
+echo "### Finished importing data. Now tailing Tomcat log ..."
 
 # we need this to avoid shutdown of the docker process
 tail -f /usr/local/tomcat/logs/catalina.out
