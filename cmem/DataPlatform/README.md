@@ -1,15 +1,15 @@
-# How to build the docker image for eccenca DataPlatform
+# How to build the Docker image for eccenca DataPlatform
 
-In order to use a docker image for eccenca DataPlatform you have to provide the following software artifact:
+In order to use a Docker image for eccenca DataPlatform you have to provide the following software artifact:
 
 - eccenca DataPlatform
 
-## Build the dockerimage
+## Build the Docker image
 
-The artifact can be downloaded from eccenca.com (using proper credentials):
-To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
+The artifact can be downloaded from eccenca.com (using proper credentials).
+To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html).
 
-- [https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.2.0.zip](https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.2.0.zip)
+- [https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.3.0.zip](https://artifactory.eccenca.com/cmem/eccenca-DataPlatform/eccenca-DataPlatform-v9.3.0.zip)
 
 Download the `.zip` files and put them into this directory (`DataPlatform`).
 
@@ -17,21 +17,21 @@ Download the `.zip` files and put them into this directory (`DataPlatform`).
 docker build -t eccenca-dataplatform-k8s:vX.Y.Z .
 ```
 
-After finishing the build process you'll find a docker image with the name `eccenca-dataplatform-k8s:vX.Y.Z`.
-This can be used to start the eccenca DataPlatform in a standalone docker container.
+After finishing the build process you'll find a Docker image with the name `eccenca-dataplatform-k8s:vX.Y.Z`.
+This can be used to start the eccenca DataPlatform in a standalone Docker container.
 
-## Download the image from our docker registry
+## Download the image from our Docker registry
 
-The docker image can be downloaded from the eccenca docker registry(using proper credentials):
-To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html)
+The Docker image can be downloaded from the eccenca Docker registry(using proper credentials).
+To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html).
 
-Therefore please login into the eccenca docker registry using the following command:
+Therefore please login into the eccenca Docker registry using the following command:
 
 ```bash
 docker login https://docker-registry.eccenca.com
 ```
 
-After a successful login you can pull the pre-build docker image:
+After a successful login you can pull the pre-build Docker image:
 
 ```bash
 docker pull docker-registry.eccenca.com/eccenca-dataplatform-k8s:latest
@@ -95,7 +95,7 @@ These will modify the configuration of the JVM.
 For a list of all available Java Options take a look to the [offical Java Platform, Standard Edition Tools Reference](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html)
 
 >Note: In any way the following JVM settings will be set `-server -Djava.security.egd=file:/dev/./urandom" \`.
-This is necessary to optimize the JVM for running within a docker environment.
+This is necessary to optimize the JVM for running within a Docker environment.
 
 ```bash
 docker run -d ... -e JAVA_OPTS="-Xms4g -Xmx8g" ... eccenca-dataplatform-k8s:vX.Y.Z

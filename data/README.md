@@ -2,7 +2,7 @@
 
 In order to use eccenca Corporate Memory you have to provide the following software artifacts:
 
-- 2017-05-CMEM-demo-data.zip
+- `2017-05-CMEM-demo-data.zip`
 
 The ZIP file can be downloaded from eccenca.com:
 
@@ -12,10 +12,12 @@ Download the `.zip` file and extract it into the data directory (`data`).
 
 The folder structure should look like this:
 
-- cmem-docker (root of the repository)
-    + data
-        * dataintegration
-            - ...
-        * dataplatform
-            - ...
-    + ...
+```bash
+REPOSITORY_ROOT
+└── data/
+    ├── dataintegration/
+    │   └── datalake/
+    │       └── ...
+    └── dataplatform/
+        └── ...
+```

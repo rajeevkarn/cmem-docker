@@ -1,17 +1,29 @@
 # Change Log
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+### Changed
+
+- Forward used versions of Corporate Memory to
+    - `DataIntegration@4.2.0`
+    - `DataPlatform@9.3.0`
+
+### Fixed
+
+- DataPlatform Tomcat deployment
+- Memory settings
+- Docker image tags
+- Import no longer requires anonymous access
 
 ## [2.3.0] 2017-11-30
 
 ### Fixed
 
-- Added config fix for tomcat related startup error
+- Tomcat startup error
 
 ## [2.2.0] 2017-10-10
 
@@ -25,14 +37,15 @@ TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security se
 ## [2.1.1] 2017-09-22
 
 ### Removed
+
 - unused file
 
 ## [2.1.0] 2017-09-19
 
 ### Added
-- Separate Dockerfiles for the `DataPlatform`, `DataIntegration` and `DataManager` are now available
-  in the apropriate directories
-- Exemplaric kubernetes deployment templates have been added
+
+- Separate Dockerfiles for the `DataPlatform`, `DataIntegration` and `DataManager` are now available in the apropriate directories
+- Sample Kubernetes deployment templates have been added
 
 ### Changed
 

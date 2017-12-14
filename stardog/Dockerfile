@@ -1,11 +1,9 @@
 FROM java:8-jre-alpine
 
-ENV STARDOG_VERSION 4.1.2
+ENV STARDOG_VERSION 4.2.3
 
 ENV STARDOG_HOME /data
 ENV STARDOG_INSTALL_DIR /opt/stardog
-
-ENV STARDOG_VERSION 4.2.3
 ENV STARDOG_START_PARAMS ""
 ENV STARDOG_CREATE_PARAMS "-n stardog -v -o versioning.enabled=true preserve.bnode.ids=false strict.parsing=false --"
 ENV STARDOG_JAVA_ARGS "-Xms2g -Xmx2g -XX:MaxDirectMemorySize=2g"

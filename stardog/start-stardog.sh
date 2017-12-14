@@ -13,12 +13,14 @@ if [ ! -f ${STARDOG_HOME}/stardog.properties ]; then
   cp ${STARDOG_INSTALL_DIR}/stardog.properties ${STARDOG_HOME}/stardog.properties
 fi
 
+echo "### Stardog runtime environment:"
+echo "STARDOG_START_PARAMS: ${STARDOG_START_PARAMS}"
+echo "STARDOG_CREATE_PARAMS: ${STARDOG_CREATE_PARAMS}"
+
+echo "### First server start to create database..."
 ${STARDOG_INSTALL_DIR}/bin/stardog-admin server start ${STARDOG_START_PARAMS}
 ${STARDOG_INSTALL_DIR}/bin/stardog-admin db create ${STARDOG_CREATE_PARAMS}
 ${STARDOG_INSTALL_DIR}/bin/stardog-admin server stop
 
-echo "starting stardog with the following environment:"
-echo "STARDOG_START_PARAMS: ${STARDOG_START_PARAMS}"
-echo "STARDOG_CREATE_PARAMS: ${STARDOG_CREATE_PARAMS}"
-
+echo "### Second server start to run in foreground..."
 ${STARDOG_INSTALL_DIR}/bin/stardog-admin server start --foreground ${STARDOG_START_PARAMS}

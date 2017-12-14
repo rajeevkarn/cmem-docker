@@ -1,6 +1,6 @@
 # eccenca Corporate Memory
 
-to install an **eccenca Corporate Memory** stack on kubernetes you can use the following templates:
+To install an **eccenca Corporate Memory** stack on Kubernetes you can use the following templates:
 
 * [00_namespace.yml](00_namespace.yml)
 * [01_pvc.yml](01_pvc.yml)
@@ -18,7 +18,7 @@ to install an **eccenca Corporate Memory** stack on kubernetes you can use the f
 
 ## Secrets
 
-To pull the images from the eccenca docker-registry you have to add the credentials as a secret with the comand below.
+To pull the images from the eccenca Docker registry you have to add the credentials as a secret with the comand below.
 To get access please use our [contact form](https://www.eccenca.com/en/company-contact.html) to get in contact.
 
 ```bash
