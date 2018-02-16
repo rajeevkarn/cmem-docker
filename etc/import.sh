@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# used to check successful startup
+HEALTH_FILE=/tmp/healthy
+rm -f ${HEALTH_FILE}
+
 echo "### Starting Tomcat..."
 
 sh /usr/local/tomcat/bin/startup.sh
@@ -29,16 +33,26 @@ done
 
 echo "### DataPlatform online, importing data ..."
 
-access_token=$(curl -X POST -s -u eldsClient:secret http://localhost:8080/dataplatform/oauth/token -H "Accept: application/json" -d "password=userB&username=userB&grant_type=password&client_secret=secret&client_id=eldsClient" | perl -ne 'if(s/.*"access_token"\s*:\s*"([^"]+).*/$1/){print;exit}')
+if [ -f /data/dataplatform/empty-cmem-di-project.ttl ]; then
 
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datatypes.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fvirtuoso-datatypes%2f"
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datasets.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fdataset%2f"
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/dsm.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fdsm%2f"
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/empty-cmem-di-project.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=http%3a%2f%2fdi.eccenca.com%2fproject%2fcmem"
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/sketch.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fsketch%2f"
-curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/vocabs.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fvocabs%2f"
+  access_token=$(curl -X POST -s -u eldsClient:secret http://localhost:8080/dataplatform/oauth/token -H "Accept: application/json" -d "password=userB&username=userB&grant_type=password&client_secret=secret&client_id=eldsClient" | perl -ne 'if(s/.*"access_token"\s*:\s*"([^"]+).*/$1/){print;exit}')
 
-echo "### Finished importing data. Now tailing Tomcat log ..."
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datatypes.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fvirtuoso-datatypes%2f"
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/datasets.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fdataset%2f"
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/dsm.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fdsm%2f"
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/empty-cmem-di-project.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=http%3a%2f%2fdi.eccenca.com%2fproject%2fcmem"
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/sketch.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fvocab.eccenca.com%2fsketch%2f"
+  curl -v -L -X PUT -H "Authorization: Bearer ${access_token}" -H 'Content-Type:text/turtle' --data-binary @/data/dataplatform/vocabs.ttl "http://localhost:8080/dataplatform/proxy/default/graph?comment=Initial+commit&graph=https%3a%2f%2fns.eccenca.com%2fexample%2fdata%2fvocabs%2f"
 
-# we need this to avoid shutdown of the docker process
-tail -f /usr/local/tomcat/logs/catalina.out
+  touch ${HEALTH_FILE}
+
+  echo "### Finished importing data. Now tailing Tomcat log ..."
+
+  # we need this to avoid shutdown of the docker process
+  tail -f /usr/local/tomcat/logs/catalina.out
+
+else
+
+  echo "### ERROR: Unable to import data, initial data artifacts not found!"
+
+fi

@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
+
+### Changed
+
+- Compose file format `2` to `3` due to health check feature
+
+### Fixed
+
+- `cmem` container startup fails if initial data artifacts are missing
+
 ## [2.3.1] 2017-12-14
 
 ### Changed
