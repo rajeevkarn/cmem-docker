@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 - `cmem` container startup fails if initial data artifacts are missing
+- DataPlatform health check no longer blocks forever
 
 ## [2.3.1] 2017-12-14
 

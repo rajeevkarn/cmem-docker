@@ -13,14 +13,14 @@ echo "### Waiting for DataPlatform to come online..."
 function testUri() {
 
     uri="http://localhost:8080/dataplatform/health"
-    curlHTTPStatus=$(curl --silent --output /dev/null -H "Origin: http://docker.local" --head --write-out "%{http_code}" "${uri}")
+    curlHTTPStatus=$(curl --max-time 1 --silent --output /dev/null -H "Origin: http://docker.local" --head --write-out "%{http_code}" "${uri}")
     curlExitStatus=$?
 
     if [[ "${curlExitStatus}" -ne "0" ]]; then
-      (echo "testURI (${uri}): curl returned exit code ${curlExitStatus} (https://curl.haxx.se/libcurl/c/libcurl-errors.html), unhealthy")
+      echo "### testURI (${uri}): curl returned exit code ${curlExitStatus} (https://curl.haxx.se/libcurl/c/libcurl-errors.html), unhealthy"
       return 1
     elif [[ "${curlHTTPStatus}" -ne "200" ]]; then
-      (echo "testURI (${uri}): HEAD on returned ${curlHTTPStatus} != 200, unhealthy")
+      echo "### testURI (${uri}): HEAD on returned ${curlHTTPStatus} != 200, unhealthy"
       return 1
     fi
     return 0
@@ -28,7 +28,7 @@ function testUri() {
 
 until testUri; do
     echo "### Still waiting for DataPlatform to come online..."
-    sleep 5
+    sleep 10
 done
 
 echo "### DataPlatform online, importing data ..."
