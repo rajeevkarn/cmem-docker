@@ -1,11 +1,10 @@
-version: '2'
+version: '3'
 services:
   cmem:
     image: eccenca/cmem:v2.3.1
     build: cmem/
-    hostname: docker.local
     environment:
-      CATALINA_OPTS: "-Xmx4g -Dspring.profiles.active=stardog"
+      CATALINA_OPTS: "-Djava.security.egd=file:/dev/./urandom -Xmx4g -Dspring.profiles.active=stardog"
     volumes:
       - ./etc:/opt/elds/etc
       - ./data:/data
@@ -16,6 +15,11 @@ services:
       - stardog
     links:
       - stardog
+    healthcheck:
+      test: ["CMD", "ls", "/tmp/healthy"]
+      interval: 5s
+      timeout: 1s
+      retries: 12
   stardog:
     image: eccenca/stardog:v4.2.3
     build: stardog/
