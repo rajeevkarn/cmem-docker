@@ -1,7 +1,7 @@
 version: '3'
 services:
   cmem:
-    image: eccenca/cmem:v2.3.1
+    image: eccenca/cmem:v2.3.3
     build: cmem/
     environment:
       CATALINA_OPTS: "-Djava.security.egd=file:/dev/./urandom -Xmx4g -Dspring.profiles.active=stardog"
