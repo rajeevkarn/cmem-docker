@@ -1,0 +1,48 @@
+js.config.workspaces:
+  default:
+    name: CMEM Hadoop Showcase
+    backend:
+      type: dataplatform
+      url: "${DEPLOY_BASE_URL}/dataplatform"
+      endpointId: default
+    authorization:
+      type: oauth2
+      oauth2:
+        clientId: eldsClient
+        grantType: implicit
+        authorizeUrl: "${DEPLOY_BASE_URL}/dataplatform/oauth/authorize"
+
+js.config.appPresentation:
+  headerName: eccenca Corporate Memory
+  windowTitle: eccenca Corporate Memory
+
+js.config.modules.datasets:
+  enable: true
+  startWith: true
+  graphUrl: "https://ns.eccenca.com/example/data/dataset/"
+  dataintegration:
+    url: "${DEPLOY_BASE_URL}/dataintegration/"
+    includeOAuthToken: true
+    project: cmem
+    disabledDatasetTypes:
+      - 'internal'
+      - 'parquet'
+      - 'avro'
+      - 'hadoopSequenceFile'
+      - 'HBase'
+      - 'inMemory'
+      - 'file'
+      - 'variableDataset' # should leave json, xml, csv & orc, hive & jdbc & sparkView, dataplatform & sqarql
+
+js.config.modules.explore:
+  enable: true
+  graphlist:
+    listQuery: |
+      SELECT DISTINCT ?g WHERE {
+        GRAPH ?g { ?s ?p ?o }
+        FILTER (?g NOT IN (<http://www.w3.org/2002/07/owl#>,<http://www.w3.org/ns/ldp#>)) .
+      }
+
+js.config.modules.vocabulary:
+  enable: true
+  graphUrl: "https://ns.eccenca.com/example/data/vocabs/"

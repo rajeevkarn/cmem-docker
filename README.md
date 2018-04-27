@@ -6,14 +6,13 @@ This orchestration bundles Corporate Memory and enables you to evaluate it easil
 
 <!-- MarkdownTOC -->
 
-- [Requirements](#requirements)
-- [Usage instructions](#usage-instructions)
-    - [Stardog specific instructions](#stardog-specific-instructions)
-    - [Virtuoso specific instructions](#virtuoso-specific-instructions)
-- [Applications](#applications)
-    - [Corporate Memory](#corporate-memory)
-    - [Backend](#backend)
-- [Project structure](#project-structure)
+- Requirements
+- Usage instructions
+    - Usage hints
+- Applications
+    - Corporate Memory
+    - Backend
+- Project structure
 
 <!-- /MarkdownTOC -->
 
@@ -45,19 +44,24 @@ Furthermore you need to setup `docker.local` as an alias for your Docker instanc
 
 ## Usage instructions
 
-You have the possibility to start this orchestration either with Stardog or with Virtuoso as backend. Please follow the instructions below:
-
 1. Run `git clone https://github.com/eccenca/cmem-docker.git && cd cmem-docker`.
 
-1. Download the eccenca Corporate Memory release artifacts listed in [cmem/README.md](cmem/README.md) into the `cmem` folder.
+1. Download the eccenca Corporate Memory inital data artifacts zip listed in [data/README.md](data/README.md) into the `data/backups` folder.
 
-1. Download the eccenca Corporate Memory inital data artifacts listed in [data/README.md](data/README.md) into the `data` folder.
+1. Login your Docker client to the eccenca Docker registry with your eccenca account:
 
-1. Now you have to choose if you want to run Stardog or Virtuoso as backend:
+    ```bash
+    $ docker login -u USERNAME https://docker-registry.eccenca.com
+    ```
 
-    1.  If you want to use Stardog, execute the steps described [here](#stardog-specific-instructions).
+1. Stardog is commercially licensed software. You need to obtain a license, and then place it into the `conf/stardog` folder.
 
-    1.  If you want to use virtuoso, execute the steps described [here](#virtuoso-specific-instructions).
+1. Execute the following command in order to pull the Docker images and start the orchestration:
+
+    ```bash
+    # starts the orchestration and imports the demo data backup
+    $ make clean pull start
+    ```
 
 1. Open [http://docker.local:8080](http://docker.local:8080) in your browser.
 
@@ -65,41 +69,13 @@ You have the possibility to start this orchestration either with Stardog or with
     - `userA` can read all graphs, and
     - `userB` can read/write all graphs.
 
-### Stardog specific instructions
+### Usage hints
 
-1. Stardog is commercially licensed software. You need to obtain a copy of Stardog and a license, and place them into the `stardog` folder. For more details, have a look at [stardog/README.md](stardog/README.md).
+- To stop the orchestration use `make down`. This will not delete the data stored in Stardog.
 
-1. Execute the following steps:
+- The `make start` command will create a persistent volume for Stardog and also import data. In order to avoid the deletion of data once imported, use `make up` to just run the orchestration after it was stopped with `make down`.
 
-    ```bash
-    # Create a docker volume where Stardog will store it's data
-    docker volume create --name=stardog-data
-
-    # Build the Corporate Memory and the Stardog image
-    docker-compose --file docker-compose.stardog.yml build --no-cache
-
-    # Start Corporate Memory and Stardog
-    docker-compose --file docker-compose.stardog.yml up
-    ```
-
-1. Continue with the rest of [Usage instructions](#usage-instructions).
-
-### Virtuoso specific instructions
-
-1. Execute the following steps:
-
-    ```bash
-    # Create a docker volume where Virtuoso will store it's data
-    docker volume create --name=virtuoso-data
-
-    # Build the Corporate Memory image
-    docker-compose --file docker-compose.virtuoso.yml build --no-cache
-
-    # Start Corporate Memory and Virtuoso
-    docker-compose --file docker-compose.virtuoso.yml up
-    ```
-
-1. Continue with the rest of [Usage instructions](#usage-instructions).
+- Use `make clean` in order to get a completely clean state.
 
 ## Applications
 
@@ -114,20 +90,11 @@ You have the possibility to start this orchestration either with Stardog or with
 - Stardog: [http://docker.local:5820](http://docker.local:5820)
     - Administrator credentials: `admin/admin`
 
-or
-
-- Virtuoso: [http://docker.local:8890](http://docker.local:8890)
-    - Administrator credentials: `dba/dba`
 
 ## Project structure
 
-|              File             |                              Description                               |
-| ----------------------------- | ---------------------------------------------------------------------- |
-| `docker-compose.stardog.yml`  | Docker container composition of Corporate Memory and Stardog image.    |
-| `docker-compose.virtuoso.yml` | Docker container composition of Corporate Memory and Virtuoso image.   |
-| `cmem/`                       | Folder that should hold the downloaded Corporate Memory artifacts.     |
-| `cmem/Dockerfile`             | Docker file to build the Corporate Memory image.                       |
-| `data/`                       | Folder for initial data.                                               |
-| `etc/`                        | Individual run-time configuration for the Corporate Memory components. |
-| `stardog/`                    | Folder that should hold the downloaded Stardog artifacts.              |
-| `stardog/Dockerfile`          | Docker file to build the Stardog image.                                |
+|         File         |                              Description                               |
+|----------------------|------------------------------------------------------------------------|
+| `docker-compose.yml` | Docker container composition of Corporate Memory and Stardog image.    |
+| `data/`              | Folder for initial data.                                               |
+| `conf/`              | Individual run-time configuration for the Corporate Memory components. |
