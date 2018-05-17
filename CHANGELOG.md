@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-TODO: add at least one Added, Changed, Deprecated, Removed, Fixed or Security section
+## Added
+
+- Added a Makefile for convenience
+
+## Changed
+
+- Switched to pre-built Docker images
 
 ## [2.3.3] 2018-02-16
 
