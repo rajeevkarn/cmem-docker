@@ -95,9 +95,9 @@ down:
 ## clean logs, database files and data dumps
 clean: check-env kill stop down
 	${CMD} rm -v --force
-	make stardog-volume-delete
 	rm -f ${DESTINATION}/application.log application.log.*
 	rm -f ${DESTINATION}/tempdata
+	@echo "Cleaning finished. In order to also remove Stardog's stored data, run the stardog-volume-delete target"
 
 ## clean logs, database files and data dumps
 dist-clean: clean
