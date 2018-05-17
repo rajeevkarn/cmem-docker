@@ -91,7 +91,7 @@ services:
       - "5820:5820"
 
   dataplatform:
-    image: docker-registry.eccenca.com/eccenca-dataplatform:v10.0.1
+    image: docker-registry.eccenca.com/eccenca-dataplatform:v10.1.0
     depends_on:
       stardog:
         condition: service_healthy
