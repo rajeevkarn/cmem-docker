@@ -56,10 +56,13 @@ Furthermore you need to setup `docker.local` as an alias for your Docker instanc
 
 1. Stardog is commercially licensed software. You need to obtain a license, and then place it into the `conf/stardog` folder.
 
-1. Execute the following command in order to pull the Docker images and start the orchestration:
+1. Execute the following commands in order to create a Docker volume for Stardog and pull the Docker images and start the orchestration:
 
     ```bash
-    # starts the orchestration and imports the demo data backup
+    # Creates a docker volume where Stardog will store its data
+    $ docker volume create --name=stardog-data
+    
+    # Starts the orchestration and imports the demo data backup
     $ make clean pull start
     ```
 
