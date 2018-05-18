@@ -36,7 +36,7 @@ services:
       - "docker.local:127.0.0.1"
 
   datamanager:
-    image: docker-registry.eccenca.com/eccenca-datamanager:release_4.2.0
+    image: docker-registry.eccenca.com/eccenca-datamanager:v4.2.0
     environment:
       - "DEPLOY_BASE_URL=${DEPLOY_BASE_URL}"
       - "SPRING_PROFILES_ACTIVE=${DEPLOY_HOST}"
@@ -44,7 +44,7 @@ services:
       - "${PWD}/conf/datamanager:/data"
 
   dataintegration:
-    image: docker-registry.eccenca.com/eccenca-dataintegration:v4.3.0
+    image: docker-registry.eccenca.com/eccenca-dataintegration:v4.4.0
     depends_on:
       dataplatform:
         condition: service_healthy
