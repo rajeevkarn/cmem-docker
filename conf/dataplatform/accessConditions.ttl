@@ -1,0 +1,45 @@
+@prefix eccauth: <https://vocab.eccenca.com/auth/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix : <http://eccenca.com/> .
+
+:readGraphs a eccauth:AccessCondition ;
+    rdfs:label "read only access" ;
+    dc:creator <http://eccenca.com/eccencaGmbHDevOps> ;
+    dc:created "2017-05-03T12:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    eccauth:requiresGroup :group_user ;
+    eccauth:readGraph <urn:elds-backend-all-graphs> ;
+.
+
+:adminGraphs a eccauth:AccessCondition ;
+    rdfs:label "administrative access" ;
+    dc:creator <http://eccenca.com/eccencaGmbHDevOps> ;
+    dc:created "2017-05-03T12:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    eccauth:requiresGroup :group_user, :group_user_b ;
+    eccauth:readGraph <urn:elds-backend-all-graphs> ;
+    eccauth:writeGraph <urn:elds-backend-all-graphs> ;
+    eccauth:allowedAction <urn:eccenca:di> ;
+    eccauth:allowedAction <urn:elds-backend-actions-revision-api> ;
+.
+
+:cmemAccess a eccauth:AccessCondition ;
+   rdfs:label "allow write access to cmem graph" ;
+   dc:creator <http://eccenca.com/eccencaGmbHDevOps> ;
+   dc:created "2017-05-03T12:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+   eccauth:requiresGroup :group_user, :group_user_a ;
+   eccauth:writeGraph <http://di.eccenca.com/project/cmem> ;
+.
+
+:diModuleAccess a eccauth:AccessCondition ;
+   rdfs:label "enable module dataset" ;
+   dc:creator <http://eccenca.com/eccencaGmbHDevOps> ;
+   dc:created "2017-05-03T12:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+   eccauth:requiresGroup :group_user, :group_user_a ;
+   eccauth:allowedAction <urn:eccenca:di> ;
+.
+
+<http://eccenca.com/eccencaGmbHDevOps> rdfs:label "eccenca GmbH - DevOps Team".

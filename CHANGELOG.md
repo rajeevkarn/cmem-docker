@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [3.0.0] 2018-05-25
+
+## Added
+
+- Added a Makefile for convenience
+
+## Changed
+
+- Switched to pre-built Docker images
+
 ## [2.3.3] 2018-02-16
 
 ### Fixed

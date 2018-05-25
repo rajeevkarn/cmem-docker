@@ -1,7 +1,9 @@
 *.zip
-stardog/stardog-license-key.bin
+conf/stardog/stardog-license-key.bin
 dist/data*
 datamanager.log
 dataplatform.log
+conf/dataplatform/application.log
 etc/*.log.*
 data/data*
+data/backups*

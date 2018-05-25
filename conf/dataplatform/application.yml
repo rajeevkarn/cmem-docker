@@ -1,0 +1,90 @@
+### This yml file contains multiple yaml documents.
+#
+### The first yaml document is the default config which contains parameters
+### which are shared across all deployments. The following yaml documents
+### contain deployment specific settings
+#
+### For more information: http://docs.spring.io/autorepo/docs/spring-boot/1.2.0.M1/reference/html/howto-properties-and-configuration.html#howto-change-configuration-depending-on-the-environment
+
+###
+# Default configuration which will be used across deployments
+###
+
+spring:
+  http:
+    multipart:
+      maxFileSize: 4096MB
+      maxRequestSize: 4096MB
+
+# AuthOntologyProperties
+authorization:
+  abox:
+    prefix: "http://eccenca.com/"
+  accessConditions:
+    endpointId: "default"
+    graph: "urn:elds-backend-access-conditions-graph"
+
+## OAuth2Properties
+oauth2:
+  anonymous: true
+  clients:
+    - id: "eldsClient"
+      secret: "secret"
+      grantTypes:
+        - "authorization_code"
+        - "password"
+        - "implicit"
+        - "refresh_token"
+
+## Cross-Origin Resource Sharing (CORS) settings
+http:
+  cors:
+    enabled: true # default false
+    allowOriginRegex: ".*"
+
+## SPARQL Endpoints (Stardog config)
+sparqlEndpoints:
+  owlImportsResolution: true
+  stardog:
+    - id : "default"
+      authorization : REWRITE_FROM
+      host : "stardog"
+      port : "5820"
+      database : "stardog"
+      username : "admin"
+      password : "admin"
+      versioning:
+        # disabled for speed reasons in the CHO. if you want to enable it, 
+        # make sure to also remove stardog's ENV variable "STARDOG_CREATE_PARAMS" in docker-compose.yml
+        enabled: false
+      sync:
+        publisher:
+          enabled: false
+
+proxy:
+  endpointIds:
+    - "default"
+
+# Authentication Properties
+authentication:
+  inMemory:
+    users:
+      - username: "userA"
+        password: "userA"
+        groups:
+          - "group_user"
+          - "group_user_a"
+      - username: "userB"
+        password: "userB"
+        groups:
+          - "group_user"
+          - "group_user_b"
+          - "elds-admins"
+
+logging:
+  file: "/data/application.log"
+  level:
+    com.eccenca.elds.backend: INFO
+    org.springframework: WARN
+    com.eccenca.elds.backend.webapp.web.filter.SimpleCorsFilter: WARN # to supress the "No CORS headers added" spam
+    com.eccenca.elds.backend.webapp.web.GlobalControllerExceptionHandler: TRACE # to enable better exception logging

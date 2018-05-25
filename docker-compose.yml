@@ -1,0 +1,114 @@
+version: '2.1'
+
+services:
+  dummy_startup_blocker:
+    image: docker-registry.eccenca.com/eccenca-minimal:v3.7.0
+    entrypoint: echo "Orchestration started successfully"
+    depends_on:
+      dataplatform:
+        condition: service_healthy
+      datamanager:
+        condition: service_healthy
+      dataintegration:
+        condition: service_healthy
+      stardog:
+        condition: service_healthy
+      apache2:
+        condition: service_healthy
+
+  apache2:
+    image: docker-registry.eccenca.com/eccenca-apache2:v2.4.0
+    volumes:
+      - "${PWD}/conf/apache2/default.conf:/etc/apache2/sites-enabled/000-default.conf"
+      - "${PWD}/conf/apache2/healthcheck.sh:/opt/healthcheck.sh"
+    environment:
+      - "DEPLOY_HOST=${DEPLOY_HOST}"
+      - "DEPLOY_BASE_URL=${DEPLOY_BASE_URL}"
+    ports:
+      - "${PUBLIC_PORT}:80"
+    healthcheck:
+      test: ["CMD", "bash", "/opt/healthcheck.sh"]
+      interval: 15s
+      timeout: 20s
+      retries: 40
+    # aliasing docker.local for local deployment. This is not needed for our remote deployments
+    extra_hosts:
+      - "docker.local:127.0.0.1"
+
+  datamanager:
+    image: docker-registry.eccenca.com/eccenca-datamanager:v4.2.0
+    environment:
+      - "DEPLOY_BASE_URL=${DEPLOY_BASE_URL}"
+      - "SPRING_PROFILES_ACTIVE=${DEPLOY_HOST}"
+    volumes:
+      - "${PWD}/conf/datamanager:/data"
+
+  dataintegration:
+    image: docker-registry.eccenca.com/eccenca-dataintegration:v4.4.0
+    depends_on:
+      dataplatform:
+        condition: service_healthy
+    environment:
+      - "JAVA_MAX_MEM=4g"
+      - "SERVER_CONTEXTPATH=/dataintegration/"
+      - "DEPLOY_PROTOCOL=${DEPLOY_PROTOCOL}"
+      - "DEPLOY_BASE_URL=${DEPLOY_BASE_URL}"
+    volumes:
+      - "${PWD}/conf/dataintegration:/opt/elds/dataintegration/dist/etc/dataintegration"
+      - "${PWD}/conf/dataintegration/healthcheck.sh:/opt/healthcheck.sh"
+      - "${PWD}/data/dataintegration:/data/datalake"
+    # aliasing docker.local for local deployment. This is not needed for our remote deployments.
+    links:
+      - "apache2:docker.local"
+    ports:
+      # Port of the Hive server (Virtual Datasets JDBC endpoint)
+      # WARNING: changing this to just ' - "10005" will break the JDBC endpoint
+      # functionality for showcases!
+      - "10005:10005"
+    healthcheck:
+      test: ["CMD", "bash", "/opt/healthcheck.sh"]
+      interval: 15s
+      timeout: 20s
+      retries: 40
+
+  stardog:
+    image: docker-registry.eccenca.com/complexible-stardog:v5.2.2-3
+    environment:
+      - "JAVA_MIN_MEM=2g"
+      - "JAVA_MAX_MEM=2g"
+      - "JAVA_MAX_DIRECT_MEM=1g"
+      # disable versioning for the CHO. to enable it remove line and make sure to also enable versioning in DP's application.yml
+      - "STARDOG_CREATE_PARAMS=-v -o versioning.enabled=false preserve.bnode.ids=false --"
+    volumes:
+      - "${PWD}/conf/stardog/stardog-license-key.bin:/data/stardog-license-key.bin:ro"
+      - stardog-data:/data
+    healthcheck:
+      test: ["CMD", "bash", "/opt/stardog/bin/healthcheck.sh"]
+      interval: 15s
+      timeout: 20s
+      retries: 40
+    ports:
+      - "5820:5820"
+
+  dataplatform:
+    image: docker-registry.eccenca.com/eccenca-dataplatform:v10.1.0
+    depends_on:
+      stardog:
+        condition: service_healthy
+    environment:
+      - "SERVER_CONTEXTPATH=/dataplatform"
+      - "JAVA_MAX_MEM=2g"
+    volumes:
+      - "${PWD}/conf/dataplatform:/data"
+    ports:
+      - "5005"
+    healthcheck:
+      test: ["CMD", "testURI", "http://localhost/dataplatform/health"]
+      interval: 15s
+      timeout: 20s
+      retries: 40
+
+volumes:
+  stardog-data:
+    external:
+      name: stardog-data
