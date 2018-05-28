@@ -7,3 +7,13 @@ conf/dataplatform/application.log
 etc/*.log.*
 data/data*
 data/backups*
+set-env.sh
+packer/packer
+aws.conf
+packer/cmem-docker.json
+terraform/terraform
+terraform/main.tf
+terraform/aws-start-up.sh
+terraform/.terraform
+*.tfstate
+*.backup
