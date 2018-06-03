@@ -8,11 +8,6 @@ etc/*.log.*
 data/data*
 data/backups*
 set-env.sh
-aws/packer/packer
-aws/aws.conf
-aws/terraform/terraform
-aws/terraform/main.tf
-aws/terraform/aws-start-up.sh
 aws/terraform/.terraform
 *.tfstate
 *.backup

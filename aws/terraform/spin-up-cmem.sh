@@ -19,4 +19,6 @@ docker run -it --rm\
 	-v $GITHUB_ROOT/:/cmem-docker/:ro\
 	hashicorp/terraform:light apply\
 	-var "aws_access_key=${AWS_ACCESS_KEY}"\
-	-var "aws_secret_key=${AWS_SECRET_KEY}"
+	-var "aws_secret_key=${AWS_SECRET_KEY}"\
+	-var "docker_user=${ECC_DOCKER_USER}"\
+	-var "docker_pass=${ECC_DOCKER_PASS}"

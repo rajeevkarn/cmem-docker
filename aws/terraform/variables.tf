@@ -20,3 +20,11 @@ variable "key_name" {
   description = "AWS key name."
   default = "cmemkey"
 }
+
+variable "docker_pass" {
+  description = "Eccenca docker registry password."
+}
+
+variable "docker_user" {
+  description = "Eccenca docker registry user."
+}
