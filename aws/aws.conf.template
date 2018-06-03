@@ -1,7 +1,0 @@
-ECC_DOCKER_USER username
-ECC_DOCKER_PASS password
-AWS_ACCESS_KEY accesskey
-AWS_SECRET_KEY secretkey
-AWS_INSTANCE_TYPE t2.large
-AWS_KEY_NAME Joe Doe
-PATH_TO_PRIVATE_SSH_KEY /home/username/.ssh/id_rsa
