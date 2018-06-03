@@ -84,7 +84,7 @@ resource "aws_instance" "cmem" {
     }
     inline = [
       "chmod +x /home/ubuntu/cmem-docker/aws-start-up.sh",
-      "cd /home/ubuntu/cmem-docker/ && ECC_DOCKER_USER=${var.docker_user} ECC_DOCKER_PASS=${var.docker_pass} AWS_PUBLIC_DNS=${aws_instance.cmem.public_dns} ./aws-start-up.sh"
+      "cd /home/ubuntu/cmem-docker/ && ECC_DOCKER_USER=${var.docker_user} ECC_DOCKER_PASS='${var.docker_pass}' AWS_PUBLIC_DNS=${aws_instance.cmem.public_dns} ./aws-start-up.sh"
     ]
 }
 }
