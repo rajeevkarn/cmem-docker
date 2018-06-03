@@ -32,8 +32,8 @@ services:
       timeout: 20s
       retries: 40
     # aliasing docker.local for local deployment. This is not needed for our remote deployments
-    extra_hosts:
-      - "docker.local:127.0.0.1"
+    #extra_hosts:
+    #  - "docker.local:127.0.0.1"
 
   datamanager:
     image: docker-registry.eccenca.com/eccenca-datamanager:v4.2.0
@@ -59,7 +59,8 @@ services:
       - "${PWD}/data/dataintegration:/data/datalake"
     # aliasing docker.local for local deployment. This is not needed for our remote deployments.
     links:
-      - "apache2:docker.local"
+      #- "apache2:docker.local"
+      - "apache2:${DEPLOY_HOST}"
     ports:
       # Port of the Hive server (Virtual Datasets JDBC endpoint)
       # WARNING: changing this to just ' - "10005" will break the JDBC endpoint

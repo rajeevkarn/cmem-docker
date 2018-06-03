@@ -1,6 +1,7 @@
-#!/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+# Use the unofficial bash strict mode: http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail; export FS=$'\n\t'
 
 # Check that all the ENV vars are set
 ./aws/check-docker-env.sh
@@ -21,6 +22,6 @@ fi
 # Login into eccenca docker
 docker login -u ${ECC_DOCKER_USER} -p ${ECC_DOCKER_PASS} https://docker-registry.eccenca.com
 
-export DEPLOYHOST=localhost
+export DEPLOYHOST=anyhost.local
 export DEPLOYPROTOCOL=http
 make clean pull start
