@@ -5,7 +5,6 @@ set -euo pipefail; export FS=$'\n\t'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GITHUB_ROOT="$DIR/../../"
-echo $GITHUB_ROOT
 
 docker run -it --rm\
     -v $DIR/cmem-docker.json:/cmem-docker.json:ro\
