@@ -40,8 +40,9 @@
       "sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
       "echo \"Clone cmem-docker\" ",
-      "cd /home/ubuntu && git clone https://github.com/earthquakesan/cmem-docker",
-      "cd /home/ubuntu/cmem-docker && git checkout feature/aws-deployment"
+      "cd /home/ubuntu && git clone https://github.com/eccenca/cmem-docker",
+      "cd /home/ubuntu/cmem-docker && git checkout feature/aws-deployment",
+      "cp /home/ubuntu/cmem-docker/aws/aws-install-script.sh /home/ubuntu/cmem-docker/aws-install-script.sh"
     ]
     },
     {
