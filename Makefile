@@ -1,4 +1,4 @@
-.PHONY: stop docker check-env
+.PHONY: stop docker check-env aws
 default: help;
 
 # git investigation
@@ -56,6 +56,17 @@ RESTORE-TARGETS=stardog-restore dataintegration-restore
 DATABASE = ""
 VERSION = ""
 export PERSIST_BACKUPS=true
+
+# defaults for AWS deployment
+ifeq ($(CMEM_IMAGE_VERSION),)
+	export CMEM_IMAGE_VERSION=1.0.0
+endif
+ifeq ($(AWS_REGION),)
+	export AWS_REGION=eu-central-1
+endif
+ifeq ($(AWS_INSTANCE_TYPE),)
+	export AWS_INSTANCE_TYPE=t2.large
+endif
 
 ## start the docker orchestration and import a minimal example dataset
 start: stardog-volume-create up
@@ -179,3 +190,24 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
+## deploy CMEM on AWS
+aws: aws-build-ami aws-deploy aws-show-hostname
+
+aws-build-ami:
+	@aws/check-docker-env.sh
+	@aws/check-aws-env.sh
+	@aws/packer/make-ami.sh
+
+aws-deploy:
+	@aws/check-docker-env.sh
+	@aws/check-aws-env.sh
+	@aws/terraform/spin-up-cmem.sh
+
+aws-show-hostname:
+	@aws/terraform/view-hostname.sh
+
+aws-details:
+	@aws/terraform/details.sh
+
+aws-destroy:
+	@aws/terraform/destroy-cmem.sh

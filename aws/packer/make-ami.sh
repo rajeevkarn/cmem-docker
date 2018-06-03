@@ -15,6 +15,7 @@ docker run -it --rm\
     -v $DIR/cmem-docker.json:/cmem-docker.json\
     -v $GITHUB_ROOT:/cmem-docker:ro\
     hashicorp/packer:light build\
+    -force\
     -var "aws_access_key=$AWS_ACCESS_KEY" \
     -var "aws_secret_key=$AWS_SECRET_KEY" \
     -var "image_version=$CMEM_IMAGE_VERSION" \

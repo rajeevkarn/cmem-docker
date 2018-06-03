@@ -98,3 +98,85 @@ Furthermore you need to setup `docker.local` as an alias for your Docker instanc
 | `docker-compose.yml` | Docker container composition of Corporate Memory and Stardog image.    |
 | `data/`              | Folder for initial data.                                               |
 | `conf/`              | Individual run-time configuration for the Corporate Memory components. |
+| `aws/`               | AWS deployment scripts.                                                |
+
+## Deploying on AWS
+
+To deploy CMEM on AWS you are required to provide your Eccenca Docker registry credentials, AWS access/secret key as well as Stardog license key.
+
+First of all, put your stardog license key under conf/stardog/stardog-license-key.bin (the filename should match).
+
+Secondly, export your Eccenca docker registry credentials and AWS keys as environmental variables. For example, you can put them in a set-env.sh script:
+```
+$ cat set-env.sh
+
+#!/bin/bash
+
+export ECC_DOCKER_USER=username
+export ECC_DOCKER_PASS=password
+export AWS_ACCESS_KEY=accesskey
+export AWS_SECRET_KEY=secretkey
+```
+
+Then to export your environment variables you can use `source` command:
+```
+$ source set-env.sh
+```
+
+Or use your own way, check that your terminal session got access to those variables:
+```
+$ echo $ECC_DOCKER_USER
+username
+```
+
+Now you are ready to build the AMI image and deploy it on AWS:
+```
+make aws
+```
+
+The `make aws` command will first build AMI using t2.micro AWS instance and then deploy it with t2.large AWS instance. During the deployment you will be asked to check the deployment plan (i.e. security groups, ssh key, aws instance)
+
+When the deployment finished, you will see the message such as:
+```
+...
+aws_instance.cmem (remote-exec): Finished starting orchestration
+aws_instance.cmem (remote-exec): Use 'make logs' to see logging output of all containers
+Use the following hostname to access your CMEM deployment:
+  public_dns = hostname.compute.amazonaws.com
+```
+
+Now you can open hostname.compute.amazonaws.com in your browser and access CMEM with userA/userA or userB/userB credentials.
+
+### Additional options
+
+In case you have already built an AMI, and you want to simply redeploy it:
+```
+make aws-deploy
+```
+
+You can as well just build an AMI without deploying it:
+```
+make aws-build-ami
+```
+
+To view the hostname of the deployed instance:
+```
+make aws-show-hostname
+```
+
+To view all the details of the deployed setup (including generated SSH key in case you want to connect to instance using SSH):
+```
+make aws-details
+```
+
+Note: if you want to connect to the AWS instance using SSH, simply copy private key from `make aws-details` command to a new file (e.g. ssh.key), then get the hostname of the instance with `make aws-show-hostname`. You should be able to connect to the instance as follows (substitute hostname.compute.amazonaws.com with the hostname you will get):
+```
+ssh -i ssh.key ubuntu@hostname.compute.amazonaws.com
+```
+
+It is possible to set AWS region, instance type and CMEM AMI version (simple postfix on AMI name) using the following environmental variables (listed with their default values):
+```
+export CMEM_IMAGE_VERSION=1.0.0
+export AWS_REGION=eu-central-1
+export AWS_INSTANCE_TYPE=t2.large
+```
