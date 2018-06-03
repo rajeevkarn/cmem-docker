@@ -10,7 +10,6 @@ data/backups*
 set-env.sh
 aws/packer/packer
 aws/aws.conf
-aws/packer/cmem-docker.json
 aws/terraform/terraform
 aws/terraform/main.tf
 aws/terraform/aws-start-up.sh

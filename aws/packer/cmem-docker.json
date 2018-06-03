@@ -1,17 +1,15 @@
-#!/bin/bash
-
-cat  << EOF
 {
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
+    "aws_region": "",
     "image_version": ""
   },
   "builders": [{
     "type": "amazon-ebs",
-    "access_key": "{{user \`aws_access_key\`}}",
-    "secret_key": "{{user \`aws_secret_key\`}}",
-    "region": "$AWS_REGION",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "{{user `aws_region`}}",
     "source_ami_filter": {
       "filters": {
       "virtualization-type": "hvm",
@@ -23,7 +21,7 @@ cat  << EOF
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "CMEM Corporate Demo {{user \`image_version\`}}"
+    "ami_name": "CMEM Corporate Demo {{user `image_version`}}"
   }],
   "provisioners": [
     {
@@ -43,7 +41,7 @@ cat  << EOF
       "sudo apt-get -y install docker-ce",
       "sudo usermod -aG docker ubuntu",
       "echo \"Installing docker-compose\" ",
-      "sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose",
+      "sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
       "echo \"Installing make\" ",
       "sudo apt-get install -y make"
@@ -64,4 +62,3 @@ cat  << EOF
     }
   ]
 }
-EOF
