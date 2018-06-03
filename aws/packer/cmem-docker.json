@@ -39,39 +39,15 @@
       "echo \"Installing docker-compose\" ",
       "sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
-      "echo \"Init folders\" ",
-      "mkdir -p /home/ubuntu/cmem-docker/conf/stardog"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "/cmem-docker/conf",
-      "destination": "/home/ubuntu/cmem-docker/"
+      "echo \"Clone cmem-docker\" ",
+      "cd /home/ubuntu && git clone https://github.com/earthquakesan/cmem-docker",
+      "cd /home/ubuntu/cmem-docker && git checkout feature/aws-deployment"
+    ]
     },
     {
       "type": "file",
       "source": "/cmem-docker/conf/stardog/stardog-license-key.bin",
       "destination": "/home/ubuntu/cmem-docker/conf/stardog/"
-    },
-    {
-      "type": "file",
-      "source": "/cmem-docker/data",
-      "destination": "/home/ubuntu/cmem-docker/"
-    },
-    {
-      "type": "file",
-      "source": "/cmem-docker/docker-compose.yml",
-      "destination": "/home/ubuntu/cmem-docker/"
-    },
-    {
-      "type": "file",
-      "source": "/cmem-docker/Makefile",
-      "destination": "/home/ubuntu/cmem-docker/"
-    },
-    {
-      "type": "file",
-      "source": "/cmem-docker/aws/aws-install-script.sh",
-      "destination": "/home/ubuntu/cmem-docker/"
     },
     {
     "type": "shell",
