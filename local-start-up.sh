@@ -19,7 +19,7 @@ if [ ! -f data/backups/2018-04-cmem-data.zip ]; then
 fi
 
 # Login into eccenca docker
-docker login -u ${DOCKER_USER} -p ${DOCKER_PASS} https://docker-registry.eccenca.com
+docker login -u ${ECC_DOCKER_USER} -p ${ECC_DOCKER_PASS} https://docker-registry.eccenca.com
 
 export DEPLOYHOST=localhost
 export DEPLOYPROTOCOL=http
